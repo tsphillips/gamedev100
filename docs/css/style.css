@@ -6,6 +6,10 @@ body{
     font-size:12pt;
 }
 
+div.video {
+    display: none;
+}
+
 #container{
     margin: 2em auto;
     width: 1024px;
@@ -219,9 +223,9 @@ nav li.next{
 	background: -ms-linear-gradient(top, #8181b3 1%,#30304d 100%);
 	background: linear-gradient(top, #8181b3 1%,#30304d 100%);
 	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#8181b3', endColorstr='#30304d',GradientType=0 );
-	box-shadow: 
-		0px 0px 0px 1px rgba(155,155,155,0.3), 
-		1px 0px 0px 0px rgba(255,255,255,0.9) inset, 
+	box-shadow:
+		0px 0px 0px 1px rgba(155,155,155,0.3),
+		1px 0px 0px 0px rgba(255,255,255,0.9) inset,
 		0px 2px 2px rgba(0,0,0,0.1);
 }
 .ac-container label.examplelabel{
@@ -256,7 +260,7 @@ nav li.next{
 	height: 24px;
 	right: 13px;
 	top: 7px;
-	x-background: transparent url(../images/arrow_down.png) no-repeat center center;	
+	x-background: transparent url(../images/arrow_down.png) no-repeat center center;
 }
 .ac-container input:checked + label:hover:after{
 	x-background-image: url(../images/arrow_up.png);
