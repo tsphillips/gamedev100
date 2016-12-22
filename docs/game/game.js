@@ -1,5 +1,5 @@
 /*
-Copyright (c)2014 Thomas S. Phillips..
+Copyright (c)2014 Thomas S. Phillips.
 Released under GPL3.
 
 Thomas S. Phillips

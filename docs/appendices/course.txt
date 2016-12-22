@@ -1,4 +1,4 @@
-Copyright (c)2014 Thomas S. Phillips..
+Copyright (c)2014 Thomas S. Phillips.
 
 Module 1: Getting Started
 ===========================================================
