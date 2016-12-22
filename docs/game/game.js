@@ -1,6 +1,6 @@
 /*
 Copyright (c)2014 Thomas S. Phillips..
-For non-commercial use only.
+Released under GPL3.
 
 Thomas S. Phillips
 
