@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<!--
+Copyright (c)2014 Thomas S. Phillips..
+For non-commercial use only.
+You may use this file for personal educational use, or as a basis for
+creating your own unique derivatives.
+
+
+ 
+-->
+<html>
+<head>
+	<title>Example 8.1 - Environment</title>
+	<style type="text/css">
+	    .example {
+	        background:white;
+	        color:black;
+	        border-style:solid;
+	        border-color:black;
+	        border-width:3px;
+	    }
+        h1 {
+            text-align:center;
+        }
+		.example-canvas {
+            padding-left: 0;
+            padding-right: 0;
+            margin-left: auto;
+            margin-right: auto;
+            display: block;
+        }
+	</style>
+	<script src="../scripts/google-code-prettify/run_prettify.js"></script>
+</head>
+<body>
+    <div class="example">
+
+    <h1>Example 8.1 - Environment</h1>
+    <p align="center">
+        This is a live example.
+        The code is embedded in the web page.
+        View the page source with your browser to see it all.
+    </p>
+
+	<canvas id="canvas" class="example-canvas" width="200" height="150"></canvas>
+
+	<script>
+    //////////////////////////
+    // Lesson 8.1 Example
+    // Comments start with "//"
+    
+    // Display elements of the browser environment.
+
+    // We drawn on the HTML5 canvas.
+    var canvas = document.getElementById("canvas");
+    
+    // The "context" variable has functions for drawing on the screen.
+    var context = canvas.getContext("2d");
+
+    // Here we record information about the browser environment.
+    var test_sfx = new Audio();
+    var ogg_support = test_sfx.canPlayType("audio/ogg");
+    var mp3_support = test_sfx.canPlayType("audio/mpeg");
+    var canvas_width = canvas.width;
+    var canvas_height = canvas.height;
+    
+    // canPlayType() returns "probably" "maybe" or "" (empty string).
+    
+    
+    // We will draw some text later.
+    context.font="14px monospace";
+    context.textAlign = "center";
+
+    // game_core() is our main game function.
+    // The game_core() function is called by the setInterval() command.
+    function game_core() {
+       update();  // check the rules
+       draw();    // draw the game on the screen
+       vfx();     // display visual effects
+       sfx();     // play sound effects
+    } // game_core()
+
+    // update() checks the game rules.
+    // The update() function is called by the game_core() function.
+    function update() {
+        // There are no rules.
+    } // update()
+    
+    // draw() draws on the screen.
+    // A function is a list of commands that we will execute later.
+    // The draw() function is called by the game_core() function.
+    function draw() {
+        
+        var y = 1;
+        var line_height = 15;
+
+        context.fillStyle = "#000";
+        context.fillRect(0, 0, canvas_width, canvas_height);
+        context.fillStyle = "#fff";
+
+        context.fillText("Ogg: " + ogg_support,
+                         canvas_width / 2,
+                         (y++) * line_height);
+        context.fillText("MP3: " + mp3_support,
+                         canvas_width / 2,
+                         (y++) * line_height);
+        context.fillText("Canvas Width: " + canvas_width,
+                         canvas_width / 2,
+                         (y++) * line_height);
+        context.fillText("Canvas Height: " + canvas_height,
+                         canvas_width / 2,
+                         (y++) * line_height);
+        
+    } // draw()
+    
+    // The vfx() function is called by the game_core() function.
+    function vfx() {
+        // We have no visual special effects.
+    } // vfx()
+
+    // The sfx() function is called by the game_core() function.
+    function sfx() {
+        // We have no sound effects.
+    } // sfx()
+    
+    // Call the game_core() function every 500ms (i.e., every 0.500 seconds).
+    // This basically starts the game.
+    setInterval(game_core, 500);
+	</script>
+
+    <pre class="prettyprint lang-javascript linenums:1" style="font-size:10pt;">
+    //////////////////////////
+    // Lesson 8.1 Example
+    // Comments start with "//"
+    
+    // Display elements of the browser environment.
+
+    // We drawn on the HTML5 canvas.
+    var canvas = document.getElementById("canvas");
+    
+    // The "context" variable has functions for drawing on the screen.
+    var context = canvas.getContext("2d");
+
+    // Here we record information about the browser environment.
+    var test_sfx = new Audio();
+    var ogg_support = test_sfx.canPlayType("audio/ogg");
+    var mp3_support = test_sfx.canPlayType("audio/mpeg");
+    var canvas_width = canvas.width;
+    var canvas_height = canvas.height;
+    
+    // canPlayType() returns "probably" "maybe" or "" (empty string).
+    
+    
+    // We will draw some text later.
+    context.font="14px monospace";
+    context.textAlign = "center";
+
+    // game_core() is our main game function.
+    // The game_core() function is called by the setInterval() command.
+    function game_core() {
+       update();  // check the rules
+       draw();    // draw the game on the screen
+       vfx();     // display visual effects
+       sfx();     // play sound effects
+    } // game_core()
+
+    // update() checks the game rules.
+    // The update() function is called by the game_core() function.
+    function update() {
+        // There are no rules.
+    } // update()
+    
+    // draw() draws on the screen.
+    // A function is a list of commands that we will execute later.
+    // The draw() function is called by the game_core() function.
+    function draw() {
+        
+        var y = 1;
+        var line_height = 15;
+
+        context.fillStyle = "#000";
+        context.fillRect(0, 0, canvas_width, canvas_height);
+        context.fillStyle = "#fff";
+
+        context.fillText("Ogg: " + ogg_support,
+                         canvas_width / 2,
+                         (y++) * line_height);
+        context.fillText("MP3: " + mp3_support,
+                         canvas_width / 2,
+                         (y++) * line_height);
+        context.fillText("Canvas Width: " + canvas_width,
+                         canvas_width / 2,
+                         (y++) * line_height);
+        context.fillText("Canvas Height: " + canvas_height,
+                         canvas_width / 2,
+                         (y++) * line_height);
+        
+    } // draw()
+    
+    // The vfx() function is called by the game_core() function.
+    function vfx() {
+        // We have no visual special effects.
+    } // vfx()
+
+    // The sfx() function is called by the game_core() function.
+    function sfx() {
+        // We have no sound effects.
+    } // sfx()
+    
+    // Call the game_core() function every 500ms (i.e., every 0.500 seconds).
+    // This basically starts the game.
+    setInterval(game_core, 500);
+    </pre>
+    </div>
+        
+    <footer align="center">
+        Copyright (c)2014 Thomas S. Phillips..
+    </footer>
+</body>
+</html>

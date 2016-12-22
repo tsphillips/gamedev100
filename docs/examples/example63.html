@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<!--
+Copyright (c)2014 Thomas S. Phillips..
+For non-commercial use only.
+You may use this file for personal educational use, or as a basis for
+creating your own unique derivatives.
+
+
+ 
+-->
+<html>
+<head>
+	<title>Example 6.3 - Falling Tiles</title>
+	<style type="text/css">
+	    .example {
+	        background:white;
+	        color:black;
+	        border-style:solid;
+	        border-color:black;
+	        border-width:3px;
+	    }
+        h1 {
+            text-align:center;
+        }
+		.example-canvas {
+            padding-left: 0;
+            padding-right: 0;
+            margin-left: auto;
+            margin-right: auto;
+            display: block;
+        }
+	</style>
+	<script src="../scripts/google-code-prettify/run_prettify.js"></script>
+</head>
+<body>
+    <div class="example">
+
+    <h1>Example 6.3 - Falling Tiles</h1>
+    <p align="center">
+        This is a live example.
+        The code is embedded in the web page.
+        View the page source with your browser to see it all.
+    </p>
+
+	<canvas id="canvas" class="example-canvas" width="250" height="300"></canvas>
+
+	<script>
+    //////////////////////////
+    // Lesson 6.3 Example
+    // Comments start with "//"
+    
+    // Like the grid example 6.1, but tiles will fall to fill empty spaces.
+
+    var x, y, i;  // variables we will use for loops
+    var mouse_x, mouse_y, tile_x, tile_y;  // variables for input
+    var grid_offset_x = 0;  // Location of grid.
+    var grid_offset_y = 0;  // Location of grid.
+    var tile_width = 75;    // How wide a tile is.
+    var tile_height = 75;   // How tall a tile is.
+    
+    var toggle_tile = false;  // Should we toggle a tile?
+    var toggle_tile_x = 0;  // Where is the tile to toggle?
+    var toggle_tile_y = 0;  // Where is the tile to toggle?
+
+    // Remember lesson 3.4 on the game board?  This is similar.
+    var grid_width = 3;
+    var grid_height = 3;
+    var tiles = [];
+    for (i=0; i<grid_width; i++) {
+        tiles[i] = new Array(grid_height);
+    } // for i
+
+    for (y = 0; y < grid_height; y++) {
+        for (x = 0; x < grid_width; x++) {
+            tiles[x][y] = 1;
+        } // for x
+    } // for y
+
+    // We drawn on the HTML5 canvas.
+    var canvas = document.getElementById("canvas");
+    
+    // The "context" variable has functions for drawing on the screen.
+    var context = canvas.getContext("2d");
+    
+    // game_core() is our main game function.
+    function game_core() {
+       update();  // check the rules
+       draw();    // draw the game on the screen
+       vfx();     // display visual effects
+       sfx();     // play sound effects
+    } // game_core()
+
+    // update() checks the game rules.
+    function update() {
+        
+        // Rule 1:
+        // If an empty tile has a tile above it, move the tile above down.
+        for (y = 1; y < grid_height; y++) {
+            for (x = 0; x < grid_width; x++) {
+                if (tiles[x][y] == 0) {
+                    tiles[x][y] = tiles[x][y-1];
+                    tiles[x][y-1] = 0;
+                } // if
+            } // for x
+        } // for y
+
+        // Rule 2:
+        // toggle_tile is acting like a game state.
+        if (toggle_tile == true) {        
+            if (tiles[toggle_tile_x][toggle_tile_y] == 0) {
+                tiles[toggle_tile_x][toggle_tile_y] = 1;
+            } else {
+                tiles[toggle_tile_x][toggle_tile_y] = 0;
+            } // if-else
+            toggle_tile = false;
+        } // if
+
+    } // update()
+    
+    // The below code is immediate code. It is not in a function.
+    // The code will be run before any of the functions are.
+    // This particular piece of code will load an image into
+    // memory so we can draw it later.
+    var image = new Image(75, 75); // Specify how big the image is.
+    image.src = "tile3.png";  // Where can the image be found?
+    
+    // We will draw some text later.
+    context.font="14px monospace";
+    context.textAlign = "center";
+
+    // draw() draws on the screen.
+    // Before an image can be drawn, the image must have
+    // already been loaded into memory.
+    // contenxt.drawImage() is the function used to draw images.
+    function draw() {
+        var x;  // x position (left-right)
+        var y;  // y position (up-down)
+
+        // Clear the background.
+        context.fillStyle = "#000";        // #000 is black.
+        context.fillRect(0, 0, 250, 300);  // Draw a rectangle.
+
+        for (y = 0; y < grid_height; y++) {
+            for (x = 0; x < grid_width; x++) {
+                if (tiles[x][y] == 1) {
+                    context.drawImage(image, x * 75, y * 75);
+                } else {
+                    context.fillRect(x*75, y*75, 75, 75);
+                } // if-else
+            } // for x
+        } // for y
+        
+    } // draw()
+    
+    //////////////////////////////////
+    // Lesson 5.1 Tracking Mouse Movement
+    
+    canvas.onmousemove = function(event) {
+        mouse_x = event.clientX - canvas.offsetLeft;
+        mouse_y = event.clientY - canvas.offsetTop;
+        tile_x = Math.floor((mouse_x - grid_offset_x) / tile_width);
+        tile_y = Math.floor((mouse_y - grid_offset_y) / tile_height);
+    }; // onmousemove()
+    
+    ////////////////////////////
+    // Lesson 5.2 Clicking Tiles
+    
+    canvas.onclick = function() {
+        if (tile_x >= 0 && tile_x < grid_width &&
+            tile_y >= 0 && tile_y < grid_height) {
+            // Toggle tiles that have been clicked.
+            toggle_tile_x = tile_x;
+            toggle_tile_y = tile_y;
+            toggle_tile = true;
+            // IMPORTANT!
+            // We have moved the actual toggle code into the update() function.
+            // We need to have predictable control over when things happen.
+        } // if
+    }; // onclick()
+
+    function vfx() {
+        // We have no visual special effects.
+    } // vfx()
+    
+    function sfx() {
+        // We have no sound effects.
+    } // sfx()
+    
+    // Call the game_core function every 150ms (i.e., every 0.150 seconds).
+    // We want the game to be responsive, but let the tiles fall visibly.
+    setInterval(game_core, 150);
+	</script>
+
+    <pre class="prettyprint lang-javascript linenums:1" style="font-size:10pt;">
+    //////////////////////////
+    // Lesson 6.3 Example
+    // Comments start with "//"
+    
+    // Like the grid example 6.1, but tiles will fall to fill empty spaces.
+
+    var x, y, i;  // variables we will use for loops
+    var mouse_x, mouse_y, tile_x, tile_y;  // variables for input
+    var grid_offset_x = 0;  // Location of grid.
+    var grid_offset_y = 0;  // Location of grid.
+    var tile_width = 75;    // How wide a tile is.
+    var tile_height = 75;   // How tall a tile is.
+    
+    var toggle_tile = false;  // Should we toggle a tile?
+    var toggle_tile_x = 0;  // Where is the tile to toggle?
+    var toggle_tile_y = 0;  // Where is the tile to toggle?
+
+    // Remember lesson 3.4 on the game board?  This is similar.
+    var grid_width = 3;
+    var grid_height = 3;
+    var tiles = [];
+    for (i=0; i < grid_width; i++) {
+        tiles[i] = new Array(grid_height);
+    } // for i
+
+    for (y = 0; y < grid_height; y++) {
+        for (x = 0; x < grid_width; x++) {
+            tiles[x][y] = 1;
+        } // for x
+    } // for y
+
+    // We drawn on the HTML5 canvas.
+    var canvas = document.getElementById("canvas");
+    
+    // The "context" variable has functions for drawing on the screen.
+    var context = canvas.getContext("2d");
+    
+    // game_core() is our main game function.
+    function game_core() {
+       update();  // check the rules
+       draw();    // draw the game on the screen
+       vfx();     // display visual effects
+       sfx();     // play sound effects
+    } // game_core()
+
+    // update() checks the game rules.
+    function update() {
+        
+        // Rule 1:
+        // If an empty tile has a tile above it, move the tile above down.
+        for (y = 1; y < grid_height; y++) {
+            for (x = 0; x < grid_width; x++) {
+                if (tiles[x][y] == 0) {
+                    tiles[x][y] = tiles[x][y-1];
+                    tiles[x][y-1] = 0;
+                } // if
+            } // for x
+        } // for y
+
+        // Rule 2:
+        // toggle_tile is acting like a game state.
+        if (toggle_tile == true) {        
+            if (tiles[toggle_tile_x][toggle_tile_y] == 0) {
+                tiles[toggle_tile_x][toggle_tile_y] = 1;
+            } else {
+                tiles[toggle_tile_x][toggle_tile_y] = 0;
+            } // if-else
+            toggle_tile = false;
+        } // if
+
+    } // update()
+    
+    // The below code is immediate code. It is not in a function.
+    // The code will be run before any of the functions are.
+    // This particular piece of code will load an image into
+    // memory so we can draw it later.
+    var image = new Image(75, 75); // Specify how big the image is.
+    image.src = "tile3.png";  // Where can the image be found?
+    
+    // We will draw some text later.
+    context.font="14px monospace";
+    context.textAlign = "center";
+
+    // draw() draws on the screen.
+    // Before an image can be drawn, the image must have
+    // already been loaded into memory.
+    // contenxt.drawImage() is the function used to draw images.
+    function draw() {
+        var x;  // x position (left-right)
+        var y;  // y position (up-down)
+
+        // Clear the background.
+        context.fillStyle = "#000";        // #000 is black.
+        context.fillRect(0, 0, 250, 300);  // Draw a rectangle.
+
+        for (y = 0; y < grid_height; y++) {
+            for (x = 0; x < grid_width; x++) {
+                if (tiles[x][y] == 1) {
+                    context.drawImage(image, x * 75, y * 75);
+                } else {
+                    context.fillRect(x*75, y*75, 75, 75);
+                } // if-else
+            } // for x
+        } // for y
+        
+    } // draw()
+    
+    //////////////////////////////////
+    // Lesson 5.1 Tracking Mouse Movement
+    
+    canvas.onmousemove = function(event) {
+        mouse_x = event.clientX - canvas.offsetLeft;
+        mouse_y = event.clientY - canvas.offsetTop;
+        tile_x = Math.floor((mouse_x - grid_offset_x) / tile_width);
+        tile_y = Math.floor((mouse_y - grid_offset_y) / tile_height);
+    }; // onmousemove()
+    
+    ////////////////////////////
+    // Lesson 5.2 Clicking Tiles
+    
+    canvas.onclick = function() {
+        if (tile_x >= 0 && tile_x < grid_width &&
+            tile_y >= 0 && tile_y < grid_height) {
+            // Toggle tiles that have been clicked.
+            toggle_tile_x = tile_x;
+            toggle_tile_y = tile_y;
+            toggle_tile = true;
+            // IMPORTANT!
+            // We have moved the actual toggle code into the update() function.
+            // We need to have predictable control over when things happen.
+        } // if
+    }; // onclick()
+
+    function vfx() {
+        // We have no visual special effects.
+    } // vfx()
+    
+    function sfx() {
+        // We have no sound effects.
+    } // sfx()
+    
+    // Call the game_core function every 150ms (i.e., every 0.150 seconds).
+    // We want the game to be responsive, but let the tiles fall visibly.
+    setInterval(game_core, 150);
+    </pre>
+    </div>
+
+    <footer align="center">
+        Copyright (c)2014 Thomas S. Phillips..
+    </footer>
+</body>
+</html>

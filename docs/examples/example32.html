@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<!--
+Copyright (c)2014 Thomas S. Phillips..
+For non-commercial use only.
+You may use this file for personal educational use, or as a basis for
+creating your own unique derivatives.
+
+
+ 
+-->
+<html>
+<head>
+	<title>Example 3.2</title>
+	<style type="text/css">
+	    .example {
+	        background:white;
+	        color:black;
+	        border-style:solid;
+	        border-color:black;
+	        border-width:3px;
+	    }
+        h1 {
+            text-align:center;
+        }
+		.example-canvas {
+            padding-left: 0;
+            padding-right: 0;
+            margin-left: auto;
+            margin-right: auto;
+            display: block;
+        }
+	</style>
+	<script src="../scripts/google-code-prettify/run_prettify.js"></script>
+</head>
+<body>
+    <div class="example">
+
+    <h1>Example 3.2 - Canvas and Context</h1>
+    <p align="center">
+        This is a live example.
+        The code is embedded in the web page.
+        View the page source with your browser to see it all.
+    </p>
+
+	<canvas id="canvas" class="example-canvas" width="200" height="150"></canvas>
+
+	<script>
+    //////////////////////////
+    // Lesson 3.2 Example
+    // Comments start with "//"
+    
+    // We draw on the canvas.
+    // We can use offsets to determine where to draw on the canvas.
+    
+    // We drawn on an HTML5 canvas.
+    // The canvas is an HTML5 element on the web page.
+    // Here's what it looks like in the HTML5 page:
+    // <canvas id="canvas" width="200" height="150"></canvas>
+    // IMPORTANT! The id attribute tells us how we can "grab" a reference
+    // to the canvas.
+    var canvas = document.getElementById("canvas");
+    
+    // The canvas element has something called a "context."
+    // The "context" variable has functions for drawing on the screen.
+    // The context could be 2 dimensional (2d) or 3 dimensional (3d).
+    // We are going to get the 2d context.
+    var context = canvas.getContext("2d");
+
+    // game_core() is our main game function.
+    function game_core() {
+       update();  // check the rules
+       draw();    // draw the game on the screen
+       vfx();     // display visual effects
+       sfx();     // play sound effects
+    } // game_core()
+
+    // update() checks the game rules.
+    function update() {
+        // There are no rules.
+    } // update()
+
+    // draw() draws on the screen.
+    function draw() {
+
+        // All of the drawing is done using the context.
+        // The actual graphics will appear on the canvas, which is
+        // space reserved on the web page.
+
+        // Draw a gray box.
+        context.fillStyle = "#aaa";        // #aaa is gray.
+        // Draw a box 200 pixels wide and 150 pixels tall.
+        // The box will fill the entire canvas.
+        context.fillRect(0, 0, 200, 150);
+
+        // Draw a red box.
+        context.fillStyle = "#f00";        // #f00 is red.
+        // The top left of the box is 100 pixels to the right
+        // and 75 pixels down.
+        // Draw a box 50 pixels wide and 50 pixels tall.
+        context.fillRect(100, 75, 50, 50);
+        
+    } // draw()
+    
+    function vfx() {
+        // We have no visual special effects.
+    } // vfx()
+    
+    function sfx() {
+        // We have no sound effects.
+    } // sfx()
+    
+    // Call the game_core function every 500ms (i.e., every 0.500 seconds).
+    // This basically starts the game.
+    setInterval(game_core, 500);
+	</script>
+
+    <pre class="prettyprint lang-javascript linenums:1" style="font-size:10pt;">
+    //////////////////////////
+    // Lesson 3.2 Example
+    // Comments start with "//"
+    
+    // We draw on the canvas.
+    // We can use offsets to determine where to draw on the canvas.
+    
+    // We drawn on an HTML5 canvas.
+    // The canvas is an HTML5 element on the web page.
+    // Here's what it looks like in the HTML5 page:
+    // &lt;canvas id="canvas" width="200" height="150">&lt;/canvas>
+    // IMPORTANT! The id attribute tells us how we can "grab" a reference
+    // to the canvas.
+    var canvas = document.getElementById("canvas");
+    
+    // The canvas element has something called a "context."
+    // The "context" variable has functions for drawing on the screen.
+    // The context could be 2 dimensional (2d) or 3 dimensional (3d).
+    // We are going to get the 2d context.
+    var context = canvas.getContext("2d");
+
+    // game_core() is our main game function.
+    function game_core() {
+       update();  // check the rules
+       draw();    // draw the game on the screen
+       vfx();     // display visual effects
+       sfx();     // play sound effects
+    } // game_core()
+
+    // update() checks the game rules.
+    function update() {
+        // There are no rules.
+    } // update()
+
+    // draw() draws on the screen.
+    function draw() {
+
+        // All of the drawing is done using the context.
+        // The actual graphics will appear on the canvas, which is
+        // space reserved on the web page.
+
+        // Draw a gray box.
+        context.fillStyle = "#aaa";        // #aaa is gray.
+        // Draw a box 200 pixels wide and 150 pixels tall.
+        // The box will fill the entire canvas.
+        context.fillRect(0, 0, 200, 150);
+
+        // Draw a red box.
+        context.fillStyle = "#f00";        // #f00 is red.
+        // The top left of the box is 100 pixels to the right
+        // and 75 pixels down.
+        // Draw a box 50 pixels wide and 50 pixels tall.
+        context.fillRect(100, 75, 50, 50);
+        
+    } // draw()
+    
+    function vfx() {
+        // We have no visual special effects.
+    } // vfx()
+    
+    function sfx() {
+        // We have no sound effects.
+    } // sfx()
+    
+    // Call the game_core function every 500ms (i.e., every 0.500 seconds).
+    // This basically starts the game.
+    setInterval(game_core, 500);
+    </pre>
+    </div>
+    
+    <footer align="center">
+        Copyright (c)2014 Thomas S. Phillips..
+    </footer>
+</body>
+</html>

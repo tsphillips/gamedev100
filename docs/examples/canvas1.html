@@ -1,0 +1,24 @@
+<html>
+    <head>
+        <title>Canvas 1 Test</title>
+    </head>
+    <body bgcolor="#00000">
+        <canvas id="canvas" width="800" height="600"></canvas>
+        <script>
+        function f() {
+            var canvas = document.getElementById("canvas");
+            var context = canvas.getContext("2d");
+            var min = 0;
+            var max = 9;
+            var x1 = Math.floor(Math.random() * (max - min) + min);
+            var x2 = Math.floor(Math.random() * (max - min) + min);
+            var x3 = Math.floor(Math.random() * (max - min) + min);
+            var color = "#" + x1 + "" + x2 + "" + x3;
+            // console.log(color);
+            context.fillStyle = color;
+            context.fillRect(0, 0, 800, 600);
+        } // f()
+        setInterval(f, 150)
+        </script>
+    </body>
+</html>

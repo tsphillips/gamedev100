@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<!--
+Copyright (c)2014 Thomas S. Phillips..
+For non-commercial use only.
+You may use this file for personal educational use, or as a basis for
+creating your own unique derivatives.
+
+
+ 
+-->
+<html>
+<head>
+	<title>Example 4.1 - Loading Images</title>
+	<style type="text/css">
+	    .example {
+	        background:white;
+	        color:black;
+	        border-style:solid;
+	        border-color:black;
+	        border-width:3px;
+	    }
+        h1 {
+            text-align:center;
+        }
+		.example-canvas {
+            padding-left: 0;
+            padding-right: 0;
+            margin-left: auto;
+            margin-right: auto;
+            display: block;
+        }
+	</style>
+	<script src="../scripts/google-code-prettify/run_prettify.js"></script>
+</head>
+<body>
+    <div class="example">
+
+    <h1>Example 4.1 - Loading Images</h1>
+    <p align="center">
+        This is a live example.
+        The code is embedded in the web page.
+        View the page source with your browser to see it all.
+    </p>
+
+	<canvas id="canvas" class="example-canvas" width="250" height="300"></canvas>
+
+	<script>
+    //////////////////////////
+    // Lesson 4.1 Example
+    // Comments start with "//"
+    
+    // Images must be loaded into memory before they
+    // can be drawn to the canvas.
+    
+    // We drawn on the HTML5 canvas.
+    var canvas = document.getElementById("canvas");
+    
+    // The "context" variable has functions for drawing on the screen.
+    var context = canvas.getContext("2d");
+    
+    // game_core() is our main game function.
+    function game_core() {
+       update();  // check the rules
+       draw();    // draw the game on the screen
+       vfx();     // display visual effects
+       sfx();     // play sound effects
+    } // game_core()
+
+    // update() checks the game rules.
+    function update() {
+        // There are no rules.
+    } // update()
+    
+    // The below code is immediate code. It is not in a function.
+    // The code will be run before any of the functions are.
+    // This particular piece of code will load an image into
+    // memory so we can draw it later.
+    var image = new Image(242, 279); // Specify how big the image is.
+    image.src = "fact1.png";  // Where can the image be found?
+    
+    // draw() draws on the screen.
+    // Before an image can be drawn, the image must have
+    // already been loaded into memory.
+    // contenxt.drawImage() is the function used to draw images.
+    function draw() {
+        // Clear the background.
+        context.fillStyle = "#000";        // #000 is black.
+        context.fillRect(0, 0, 250, 300);  // Draw a rectangle.
+        // Now draw an image.
+        context.drawImage(image, 0, 0);
+    } // draw()
+    
+    function vfx() {
+        // We have no visual special effects.
+    } // vfx()
+    
+    function sfx() {
+        // We have no sound effects.
+    } // sfx()
+    
+    // Call the game_core function every 500ms (i.e., every 0.500 seconds).
+    // This basically starts the game.
+    setInterval(game_core, 500);
+	</script>
+
+    <pre class="prettyprint lang-javascript linenums:1" style="font-size:10pt;">
+    //////////////////////////
+    // Lesson 4.1 Example
+    // Comments start with "//"
+    
+    // Images must be loaded into memory before they
+    // can be drawn to the canvas.
+    
+    // We drawn on the HTML5 canvas.
+    var canvas = document.getElementById("canvas");
+    
+    // The "context" variable has functions for drawing on the screen.
+    var context = canvas.getContext("2d");
+    
+    // game_core() is our main game function.
+    function game_core() {
+       update();  // check the rules
+       draw();    // draw the game on the screen
+       vfx();     // display visual effects
+       sfx();     // play sound effects
+    } // game_core()
+
+    // update() checks the game rules.
+    function update() {
+        // There are no rules.
+    } // update()
+    
+    // The below code is immediate code. It is not in a function.
+    // The code will be run before any of the functions are.
+    // This particular piece of code will load an image into
+    // memory so we can draw it later.
+    var image = new Image(242, 279); // Specify how big the image is.
+    image.src = "fact1.png";  // Where can the image be found?
+    
+    // draw() draws on the screen.
+    // Before an image can be drawn, the image must have
+    // already been loaded into memory.
+    // contenxt.drawImage() is the function used to draw images.
+    function draw() {
+        // Clear the background.
+        context.fillStyle = "#000";        // #000 is black.
+        context.fillRect(0, 0, 250, 300);  // Draw a rectangle.
+        // Now draw an image.
+        context.drawImage(image, 0, 0);
+    } // draw()
+    
+    function vfx() {
+        // We have no visual special effects.
+    } // vfx()
+    
+    function sfx() {
+        // We have no sound effects.
+    } // sfx()
+    
+    // Call the game_core function every 500ms (i.e., every 0.500 seconds).
+    // This basically starts the game.
+    setInterval(game_core, 500);
+    </pre>
+    </div>
+
+    <footer align="center">
+        Copyright (c)2014 Thomas S. Phillips..
+    </footer>
+</body>
+</html>

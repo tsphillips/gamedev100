@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<!--
+Copyright (c)2014 Thomas S. Phillips..
+For non-commercial use only.
+You may use this file for personal educational use, or as a basis for
+creating your own unique derivatives.
+
+
+ 
+-->
+<html>
+<head>
+	<title>Example 3.1</title>
+	<style type="text/css">
+	    .example {
+	        background:white;
+	        color:black;
+	        border-style:solid;
+	        border-color:black;
+	        border-width:3px;
+	    }
+        h1 {
+            text-align:center;
+        }
+		.example-canvas {
+            padding-left: 0;
+            padding-right: 0;
+            margin-left: auto;
+            margin-right: auto;
+            display: block;
+        }
+	</style>
+	<script src="../scripts/google-code-prettify/run_prettify.js"></script>
+</head>
+<body>
+    <div class="example">
+
+    <h1>Example 3.1 - Drawing Offsets</h1>
+    <p align="center">
+        This is a live example.
+        The code is embedded in the web page.
+        View the page source with your browser to see it all.
+    </p>
+
+	<canvas id="canvas" class="example-canvas" width="200" height="150"></canvas>
+
+	<script>
+    //////////////////////////
+    // Lesson 3.1 Example
+    // Comments start with "//"
+    
+    // We draw on the canvas.
+    // We can use offsets to determine where to draw on the canvas.
+    
+    // We drawn on the HTML5 canvas.
+    var canvas = document.getElementById("canvas");
+    
+    // The "context" variable has functions for drawing on the screen.
+    var context = canvas.getContext("2d");
+
+    // x and y are variables commonly used to say where something will be drawn.    
+    // x is traditionally left and right.
+    // y is traditionally up and down.
+    // An offset is how many screen pixesl to move in a direction (x or y).
+
+    // We are going to draw a red box.
+    // The offsets are where to draw the box.
+    var red_offset_x = 10;  // how far to the right
+    var red_offset_y = 10;  // how far down
+    
+    // We are going to draw a blue box, also.
+    // The offsets are where to draw the box.
+    var blue_offset_x = 100;  // how far to the right
+    var blue_offset_y = 100;  // how far down
+    
+    // game_core() is our main game function.
+    // A function is a list of commands that we will execute later.
+    function game_core() {
+       update();  // check the rules
+       draw();    // draw the game on the screen
+       vfx();     // display visual effects
+       sfx();     // play sound effects
+    } // game_core()
+
+    // update() checks the game rules.
+    function update() {
+        // There are no rules.
+    } // update()
+
+    // draw() draws on the screen.
+    function draw() {
+
+        // Draw a gray box.
+        context.fillStyle = "#aaa";        // #aaa is gray.
+        // Draw a box 200 pixels wide and 150 pixels tall.
+        // The box will fill the entire canvas.
+        context.fillRect(0, 0, 200, 150);
+
+        // Draw a red box.
+        context.fillStyle = "#f00";        // #f00 is red.
+        // Draw a box 30 pixels wide and 15 pixels tall.
+        context.fillRect(red_offset_x, red_offset_y, 30, 15);
+
+        // Draw a blue box.
+        context.fillStyle = "#00f";        // #00f is blue.
+        // Draw a box 50 pixels wide and 30 pixels tall.
+        context.fillRect(blue_offset_x, blue_offset_y, 50, 30);
+
+    } // draw()
+    
+    function vfx() {
+        // We have no visual special effects.
+    } // vfx()
+    
+    function sfx() {
+        // We have no sound effects.
+    } // sfx()
+    
+    // Call the game_core function every 500ms (i.e., every 0.500 seconds).
+    // This basically starts the game.
+    setInterval(game_core, 500);
+	</script>
+
+    <pre class="prettyprint lang-javascript linenums:1" style="font-size:10pt;">
+    //////////////////////////
+    // Lesson 3.1 Example
+    // Comments start with "//"
+    
+    // We draw on the canvas.
+    // We can use offsets to determine where to draw on the canvas.
+
+    // We drawn on the HTML5 canvas.
+    var canvas = document.getElementById("canvas");
+    
+    // The "context" variable has functions for drawing on the screen.
+    var context = canvas.getContext("2d");
+
+    // x and y are variables commonly used to say where something will be drawn.    
+    // x is traditionally left and right.
+    // y is traditionally up and down.
+    // An offset is how many screen pixesl to move in a direction (x or y).
+
+    // We are going to draw a red box.
+    // The offsets are where to draw the box.
+    var red_offset_x = 10;  // how far to the right
+    var red_offset_y = 10;  // how far down
+    
+    // We are going to draw a blue box, also.
+    // The offsets are where to draw the box.
+    var blue_offset_x = 100;  // how far to the right
+    var blue_offset_y = 100;  // how far down
+    
+    // game_core() is our main game function.
+    // A function is a list of commands that we will execute later.
+    function game_core() {
+       update();  // check the rules
+       draw();    // draw the game on the screen
+       vfx();     // display visual effects
+       sfx();     // play sound effects
+    } // game_core()
+
+    // update() checks the game rules.
+    function update() {
+        // There are no rules.
+    } // update()
+
+    // draw() draws on the screen.
+    function draw() {
+
+        // Draw a gray box.
+        context.fillStyle = "#aaa";        // #aaa is gray.
+        // Draw a box 200 pixels wide and 150 pixels tall.
+        // The box will fill the entire canvas.
+        context.fillRect(0, 0, 200, 150);
+
+        // Draw a red box.
+        context.fillStyle = "#f00";        // #f00 is red.
+        // Draw a box 30 pixels wide and 15 pixels tall.
+        context.fillRect(red_offset_x, red_offset_y, 30, 15);
+
+        // Draw a blue box.
+        context.fillStyle = "#00f";        // #00f is blue.
+        // Draw a box 50 pixels wide and 30 pixels tall.
+        context.fillRect(blue_offset_x, blue_offset_y, 50, 30);
+
+    } // draw()
+    
+    function vfx() {
+        // We have no visual special effects.
+    } // vfx()
+    
+    function sfx() {
+        // We have no sound effects.
+    } // sfx()
+    
+    // Call the game_core function every 500ms (i.e., every 0.500 seconds).
+    // This basically starts the game.
+    setInterval(game_core, 500);
+    </pre>
+    </div>
+    
+    <footer align="center">
+        Copyright (c)2014 Thomas S. Phillips..
+    </footer>
+</body>
+</html>

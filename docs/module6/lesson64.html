@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Lesson 6.4: Clear 3-in-a-Row</title>
+	<link rel="stylesheet" media="screen" href="../css/style.css">
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="author" content="Thomas S. Phillips">
+	<meta name="robots" content="noindex, nofollow">
+	<script src="../scripts/google-code-prettify/run_prettify.js"></script>
+</head>
+<body><div id="container">
+
+    <header>Learning objective 6.4: Find any 3-in-a-row patterns and clear those tiles.</header>
+    
+    <div id="banner">
+        <div id="support">
+            <b>CONTACT</b><br>The original author can be reached at &#116;&#111;&#109;&#064;&#116;&#115;&#112;&#104;&#105;&#108;&#108;&#105;&#112;&#115;&#046;&#110;&#101;&#116;.<br>
+            <br>
+            <br>
+            <br>
+        </div>
+    </div>
+    
+    <div id="content-container">
+
+    <nav class="ac-container">
+        <div>
+            <input id="ac-0" name="accordion-1" type="radio" />
+            <label for="ac-0" class="examplelabel">Final Game</label>
+            <article class="ac-small">
+                <ul>
+                    <li><a href="../game/game.html" target="_blank">The Final Game</a></li>
+                    <li><a href="../game/game.js" target="_blank">Game Source Code</a></li>
+                </ul>
+            </article>
+        </div>
+
+        <div>
+            <input id="ac-1" name="accordion-1" type="radio" />
+            <label for="ac-1">1: Getting Started</label>
+            <article class="ac-small">
+                <ul>
+                    <li><a href="../module1/index.html">Module 1 Overview</a></li>
+                    <li>1.1 <a href="../module1/lesson11.html">Introduction</a></li>
+                    <li>1.2 <a href="../module1/lesson12.html">Basic Tools</a></li>
+                    <li>1.3 <a href="../module1/lesson13.html">The Core Game</a></li>
+                </ul>
+            </article>
+        </div>
+        <div>
+            <input id="ac-2" name="accordion-1" type="radio" />
+            <label for="ac-2">2: Game Design</label>
+            <article class="ac-small">
+                <ul>
+                    <li><a href="../module2/index.html">Module 2 Overview</a></li>
+                    <li>2.1 <a href="../module2/lesson21.html">Match-3 Games</a></li>
+                    <li>2.2 <a href="../module2/lesson22.html">Adapting the Game</a></li>
+                    <li>2.3 <a href="../module2/lesson23.html">Game Design</a></li>
+                </ul>
+            </article>
+        </div>
+        <div>
+            <input id="ac-3" name="accordion-1" type="radio" />
+            <label for="ac-3">3: Data</label>
+            <article class="ac-small">
+                <ul>
+                    <li><a href="../module3/index.html">Module 3 Overview</a></li>
+                    <li>3.1 <a href="../module3/lesson31.html">Game Variables</a></li>
+                    <li>3.2 <a href="../module3/lesson32.html">Input and Output</a></li>
+                    <li>3.3 <a href="../module3/lesson33.html">Game State</a></li>
+                    <li>3.4 <a href="../module3/lesson34.html">Game Board</a></li>
+                </ul>
+            </article>
+        </div>
+        <div>
+            <input id="ac-4" name="accordion-1" type="radio" />
+            <label for="ac-4">4: Display</label>
+            <article class="ac-small">
+                <ul>
+                    <li><a href="../module4/index.html">Module 4 Overview</a></li>
+                    <li>4.1 <a href="../module4/lesson41.html">Loading Images</a></li>
+                    <li>4.2 <a href="../module4/lesson42.html">Drawing in Layers</a></li>
+                    <li>4.3 <a href="../module4/lesson43.html">Background and Framing</a></li>
+                    <li>4.4 <a href="../module4/lesson44.html">Draw a Grid of Tiles</a></li>
+                </ul>
+            </article>
+        </div>
+        <div>
+            <input id="ac-5" name="accordion-1" type="radio" />
+            <label for="ac-5">5: Input</label>
+            <article class="ac-small">
+                <ul>
+                    <li><a href="../module5/index.html">Module 5 Overview</a></li>
+                    <li>5.1 <a href="../module5/lesson51.html">Tracking Mouse Movement</a></li>
+                    <li>5.2 <a href="../module5/lesson52.html">Clicking Tiles</a></li>
+                </ul>
+            </article>
+        </div>
+        <div>
+            <input id="ac-6" name="accordion-1" type="radio" checked />
+            <label for="ac-6">6: Rules of the Game</label>
+            <article class="ac-medium">
+                <ul>
+                    <li><a href="../module6/index.html">Module 6 Overview</a></li>
+                    <li>6.1 <a href="../module6/lesson61.html">Main Rules</a></li>
+                    <li>6.2 <a href="../module6/lesson62.html">Replacing Tiles</a></li>
+                    <li>6.3 <a href="../module6/lesson63.html">Falling Tiles</a></li>
+                    <li><b>6.4 <a href="../module6/lesson64.html">Clear 3-in-a-Row</a></b></li>
+                    <li>6.5 <a href="../module6/lesson65.html">Swapping Tiles</a></li>
+                    <li>6.6 <a href="../module6/lesson66.html">Game Over?</a></li>
+                </ul>
+            </article>
+        </div>
+        <div>
+            <input id="ac-7" name="accordion-1" type="radio" />
+            <label for="ac-7">7: Visual Effects</label>
+            <article class="ac-medium">
+                <ul>
+                    <li><a href="../module7/index.html">Module 7 Overview</a></li>
+                    <li>7.1 <a href="../module7/lesson71.html">Loading Visual Effects</a></li>
+                    <li>7.2 <a href="../module7/lesson72.html">Selection Effect</a></li>
+                    <li>7.3 <a href="../module7/lesson73.html">Smooth Dropping Tiles</a></li>
+                    <li>7.4 <a href="../module7/lesson74.html">What's the score?</a></li>
+                    <li>7.5 <a href="../module7/lesson75.html">Just the Facts</a></li>
+                </ul>
+            </article>
+        </div>
+        <div>
+            <input id="ac-8" name="accordion-1" type="radio" />
+            <label for="ac-8">8: Sound Effects</label>
+            <article class="ac-small">
+                <ul>
+                    <li><a href="../module8/index.html">Module 8 Overview</a></li>
+                    <li>8.1 <a href="../module8/lesson81.html">Detect Supported Audio</a></li>
+                    <li>8.2 <a href="../module8/lesson82.html">Load Audio</a></li>
+                    <li>8.3 <a href="../module8/lesson83.html">Play Triggered Audio</a></li>
+                </ul>
+            </article>
+        </div>
+        <div>
+            <input id="ac-9" name="accordion-1" type="radio" />
+            <label for="ac-9">9: Going Forward</label>
+            <article class="ac-small">
+                <ul>
+                    <li><a href="../module9/index.html">Module 9 Overview</a></li>
+                    <li>9.1 <a href="../module9/lesson91.html">Customization</a></li>
+                    <li>9.2 <a href="../module9/lesson92.html">Extending the Game</a></li>
+                    <li>9.3 <a href="../module9/lesson93.html">Conclusion</a></li>
+                </ul>
+            </article>
+        </div>
+        <div>
+            <input id="ac-10" name="accordion-1" type="radio" />
+            <label for="ac-10" class="examplelabel">Examples</label>
+            <article class="ac-large">
+                <ul>
+                    <li>(all open in new window)</li>
+                    <li><a href="../examples/example13.html" target="_blank">1.3 Blink</a></li>
+                                
+                    <li><a href="../examples/example31.html" target="_blank">3.1 Drawing Offsets</a></li>
+                    <li><a href="../examples/example32.html" target="_blank">3.2 Canvas and Context</a></li>
+                    <li><a href="../examples/example33.html" target="_blank">3.3 Game States</a></li>
+                    <li><a href="../examples/example34.html" target="_blank">3.4 Arrays</a></li>
+            
+                    <li><a href="../examples/example41.html" target="_blank">4.1 Loading Images</a></li>
+                    <li><a href="../examples/example42.html" target="_blank">4.2 Drawing Layers</a></li>
+                    <li><a href="../examples/example43.html" target="_blank">4.3 Image Position</a></li>
+                    <li><a href="../examples/example44.html" target="_blank">4.4 Drawing Grids</a></li>
+            
+                    <li><a href="../examples/example51.html" target="_blank">5.1 The Mouse</a></li>
+                    <li><a href="../examples/example52.html" target="_blank">5.2 Mouse Click</a></li>
+            
+                    <li><a href="../examples/example61.html" target="_blank">6.1 Toggle Tiles</a></li>
+                    <li><a href="../examples/example62.html" target="_blank">6.2 Simple Game</a></li>
+                    <li><a href="../examples/example63.html" target="_blank">6.3 Falling Tiles</a></li>
+                    <li><a href="../examples/example64.html" target="_blank">6.4 Bonus Match</a></li>
+                    <li><a href="../examples/example65.html" target="_blank">6.5 Moving Earth</a></li>
+                    <li><a href="../examples/example66.html" target="_blank">6.6 Martian Orbit</a></li>
+                    
+                    <li><a href="../examples/example71.html" target="_blank">7.1 Flashy</a></li>
+                    <li><a href="../examples/example72.html" target="_blank">7.2 Pulse</a></li>
+                    <li><a href="../examples/example73.html" target="_blank">7.3 Pulsing Earth</a></li>
+                    <li><a href="../examples/example74.html" target="_blank">7.4 Clickity-Clack</a></li>
+                    <li><a href="../examples/example75.html" target="_blank">7.5 Rainbow Text</a></li>
+                    
+                    <li><a href="../examples/example81.html" target="_blank">8.1 Environment</a></li>
+                    <li><a href="../examples/example82.html" target="_blank">8.2 Sounds</a></li>
+                    <li><a href="../examples/example83.html" target="_blank">8.3 Volume</a></li>
+                </ul>
+            </article>
+        </div>
+
+    </nav>
+    
+    <section id="content">
+        &nbsp;
+        <h2>Lesson 6.4: Clear 3-in-a-Row</h2>
+        
+        <div class="video">
+            <video controls>
+                <source src="video64.mp4" type="video/mp4">
+                <source src="video64.ogg" type="video/ogg">
+                Your browser does not support the video tag.
+            </video>
+        </div>
+
+<p>Fasten your seat-belt - things are going to get more complex in the next three lessons. If your head starts to hurt, or if things are just too complicated right now, that's okay. You can always skip a lesson that seems too difficult and come back to it later. It's always fine to give your brain time to digest new information.</p>
+
+<p>The <code>clear_tiles()</code> function will check the main rule of the game -- score points for matching 3 or more tiles in a row. The function is kind of long because it does a lot.</p>
+
+<p>At a high level, the function will:</p>
+<ul>
+<li>check for any horizontal 3-in-a-row matches, and</li>
+<li>check for any vertical 3-in-a-row matches.</li>
+</ul>
+
+<p>We will check for horizontal 3-in-a-row matches one row at a time, from top to bottom. Here's a <code>for</code>loop that goes over each row:</p>
+
+<pre class="prettyprint lang-javascript" style="font-size:10pt;">
+for (y = 0; y <  grid_height; y++) {
+  // check for any matches in the row
+} // for y
+</pre>
+
+<p>We're going to be tricky when checking for matches. Instead of starting at the far left, let's start two tiles to the right:</p>
+
+<pre class="prettyprint lang-javascript" style="font-size:10pt;">
+for (x = 2; x < grid_width; x++) {
+  // check for 3-in-a-row
+} // for x
+</pre>
+
+<p>Since we are starting two tiles to the right, we can look at the tiles to left for a match. Here's the check:</p>
+
+<pre class="prettyprint lang-javascript" style="font-size:10pt;">
+if (tiles[x][y] == tiles[x-1][y] &&
+    tiles[x][y] == tiles[x-2][y]) {
+    // Found 3 in a row!
+} // if
+</pre>
+
+<p>Now that you have insight into what we're doing, here's the code to check for horizontal 3-in-a-row matches:</p>
+
+<pre class="prettyprint lang-javascript" style="font-size:10pt;">
+   // Check for horizontal 3-in-a-row
+   for (y = 0; y <  grid_height; y++) {
+       for (x = 2; x < grid_width; x++) {
+           if (tiles[x][y] == tiles[x-1][y] &&
+               tiles[x][y] == tiles[x-2][y]) {
+               // Found 3 in a row!
+               // Clear any extra tiles in the row that match
+               for (i = x + 1; i < grid_width; i++) {
+                   if (tiles[i][y] == tiles[x][y]) {
+                       tiles[i][y] = 0;
+                       if (game_state == mode.RUNNING) {
+                           score = score + 2000;
+                           trigger_bonus_sfx = true;
+                       } // if
+                   } else {
+                       // stop checking if it did not match
+                       break;
+                   } // if-else
+               } // for i
+               // Clear the 3 . . .
+               tiles[x][y] = 0;
+               tiles[x-1][y] = 0;
+               tiles[x-2][y] = 0;
+               if (game_state == mode.RUNNING) {
+                   score = score + 500;
+                   trigger_clear_sfx = true;
+               } // if
+           } // if match-3
+       } // for x
+   } // for y
+</pre>
+
+<aside><b>Woah - Lots of Code</b><br>The code samples are going to get bigger. Don't panic. Don't be initmidated and take it slow if you need to.</aside>
+<p>Yes, that's a lot of code, but if you read through it carefully it should make sense. There are a couple important points about the code. First, a player only scores points if the game is in the RUNNING state. That is, the player will not score points if the game is in the STARTING state.  Second, if we do find a 3-in-a-row we use that as an opportunity to check for extra matching tiles.</p>
+
+<p>The game state checks are pretty simple, but the code for checking extra tiles might look a little odd:</p>
+
+<pre class="prettyprint lang-javascript" style="font-size:10pt;">
+// Clear any extra tiles in the row that match
+for (i = x + 1; i < grid_width; i++) {
+  // do our stuff
+} // for i
+</pre>
+
+<aside><b>Break!</b><br>We saw "break" before in switch statements. You can also use it in "for" loops. If a "break" statement is executed in a "for" loop, then the loop immediately stops, even if all the loops have not yet finished.</aside>
+<p>We are using an extra variable, <code>i</code>, to check tiles to the right of our match. If we find matches we get points. If there's no match, the <code>break</code> statement will abort the extra checks for matching tiles.</p>
+
+<p>The code for checking for vertical matches is much the same as checking for horizontal matches, but the x and y variables are switched in the code.</p>
+
+<p>Here's the great big clear 3-in-a-row function:</p>
+
+<pre class="prettyprint lang-javascript" style="font-size:10pt;">
+//////////////////////////////
+// Lesson 6.4 Clear 3-in-a-Row
+
+function clear_tiles() {
+   // Check for horizontal 3-in-a-row
+   for (y = 0; y <  grid_height; y++) {
+       for (x = 2; x < grid_width; x++) {
+           if (tiles[x][y] == tiles[x-1][y] &&
+               tiles[x][y] == tiles[x-2][y]) {
+               // Found 3 in a row!
+               // Clear any extra tiles in the row that match
+               for (i = x + 1; i < grid_width; i++) {
+                   if (tiles[i][y] == tiles[x][y]) {
+                       tiles[i][y] = 0;
+                       if (game_state == mode.RUNNING) {
+                           score = score + 2000;
+                           trigger_bonus_sfx = true;
+                       } // if
+                   } else {
+                       // stop checking if it did not match
+                       break;
+                   } // if-else
+               } // for i
+               // Clear the 3 . . .
+               tiles[x][y] = 0;
+               tiles[x-1][y] = 0;
+               tiles[x-2][y] = 0;
+               if (game_state == mode.RUNNING) {
+                   score = score + 500;
+                   trigger_clear_sfx = true;
+               } // if
+           } // if match-3
+       } // for x
+   } // for y
+
+   // Check for vertical 3-in-a-row
+   for (x = 0; x <  grid_width; x++) {
+       for (y = 2; y < grid_height; y++) {
+           if (tiles[x][y] == tiles[x][y-1] &&
+               tiles[x][y] == tiles[x][y-2]) {
+               // Found 3 in a row!
+               // Clear any extra tiles in the column that match
+               for (i = y + 1; i < grid_height; i++) {
+                   if (tiles[x][i] == tiles[x][y]) {
+                       tiles[x][i] = 0;
+                       if (game_state == mode.RUNNING) {
+                           score = score + 2000;
+                           trigger_bonus_sfx = true;
+                       } // if
+                   } else {
+                       // stop checking if it did not match
+                       break;
+                   } // if-else
+               } // for i
+               // Clear the 3 . . .
+               tiles[x][y] = 0;
+               tiles[x][y-1] = 0;
+               tiles[x][y-2] = 0;
+               if (game_state == mode.RUNNING) {
+                   score = score + 500;
+                   trigger_clear_sfx = true;
+               } // if
+           } // if match-3
+       } // for y
+   } // for x
+
+} // clear_tiles()
+</pre>
+
+        <a href="lesson63.html"><img src="../media/previous_button.png" width="210" height="62" alt="Previous Lesson" style="float:left;margin:5px;" /></a>
+        <a href="lesson65.html"><img src="../media/next_button.png" width="210" height="62" alt="Next Lesson" style="float:right;margin:5px;" /></a>
+        
+        <div style="height:62px;"></div>
+        <p />
+        
+        <hr width="80%">
+        <a href="../examples/example64.html" target="_blank"><img class="center" src="example6_4.png" /></a>
+
+    </section>
+
+    &nbsp;
+
+    </div>
+
+    <footer>
+        <div class="trademark">Game Blueprint is a trademark of Thomas S. Phillips.</div>
+        <div class="copyright">Copyright &copy; 2014 Thomas S. Phillips.</div>
+    </footer>
+</div></body>
+</html>

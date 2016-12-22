@@ -1,0 +1,1008 @@
+Copyright (c)2014 Thomas S. Phillips..
+
+Module 1: Getting Started
+===========================================================
+
+1.1 Introduction
+-----------------------------------------------------------
+Objective: Navigate this course.
+
+### The First Step
+
+You will be able to create all kinds of fantastic games using the kowledge you learn in this course. Even though this course focuses on a match-3 game, the principles and techniques can be applied to almost any kind of game you want to make.
+
+match-3
+:A casual puzzle game where the player tries to line up three identical game pieces in a row.
+
+code
+program
+:The stuff the computer will run or execute. A game is made of code, graphics, and audio.
+
+### How to Use this Course
+
+There are four main ways to use the course:
+- Go through each lesson, one after another.
+- Skip to lessons that you want to learn about.
+- Read the program for the final game and refer to lessons as needed.
+- Jump immediately to the customization lesson (9.1).
+
+The most basic way to use the course, and to get the most benefit, is to go through each lesson in order. The lessons will take you through each game development concept, leading you step-by-step to making a finished game.
+
+If instead you want to "skip to the good parts," then you can jump around the lessons, learning about the parts that interest you the most.
+
+If you already know a little bit about programming and want to jump right in, then you can read the game program (i.e., the "code") before going through the lessons. There are comments all through the game program that link to specific lessons in the course. When there is a piece of code you want to learn more about, come back to the course and skip to the appropriate lesson.
+
+Keep in mind that this course is for beginners. Many things have been simplified to make learning easier. Programming is a very rich and vast skill; you will never learn everything there is to know. If you do continue learning about programming, you will find there are all sorts of things you can do to make your game more efficient, elegant, and sophisticated.
+
+### Parts of the Course
+
+The first thing you need to know about is how to view the lessons. The course is divided into nine modules, and each module has lessons. On the left side of the screen there is a naviagtion menu with the modules and lessons. Click on the module and lesson you want to go to. At the end of each lesson there will also be a "Next Lesson" button. Click that button to go to the next lesson in the course.
+
+module
+:The main sections of the course. A course module is a like a chapter in a book.
+
+lesson
+:Each course module is divided into lessons. A lesson explains a specific topic.
+
+The second thing you need to know about is the learning objectives. At the very top of the page you should always see a learning objective. The learning objective is the thing you should be able to do after learning all the material in a lesson.
+
+learning objective
+:What you should be able to do after learning everything in a lesson.
+
+The third thing you need to know about is the course content. Each lesson has a bunch of content that appears in the main part of your web browser. The content is the stuff you need to watch, read, and learn.
+
+content
+:The important information on how to make the game.
+
+### Learning Aids
+
+There are different types of learning aids throughout the course. The learning aids are there to help you better understand the content. The learning aids include videos, definitions, diagrams, code samples, and running demonstrations.
+
+learning aid
+:A tool to help you understand the content.
+
+1.2 Basic Tools
+-----------------------------------------------------------
+Objective: Identify and select the tools needed to make an HTML5 game.
+
+### The Tools You Need
+
+This course is very different from other courses about making games. To use this course and make your own games you need only two things:
+- a modern web browser, and
+- a text editor.
+
+You do not need special third-party tools, libraries, or special game engines. Believe it or not, you can make awesome games with just a modern web browser and a simple text editor. You also do not need a special operating system to make games. You can make awesome games that work on Windows, Mac, ChromeOS, or Linux.
+
+modern web browser
+:You are probably using one right now. Modern web browsers support HTML5. Almost anything more recent than IE8 should work.
+text editor
+:Something to edit text files. Notepad, Wordpad, TextEdit, TextWrangler, and vi are all examples of simple text editors.
+
+The game-making process is like this:
+1. Make a directory or folder called "game." This is where your game will live.
+2. Using the text editor, make and save a simple game.html file. The game.html file will point to a game.js program. The next lesson shows a simple game.html file.
+3. Using the text editor, make and save a simple game.js file. The game.js file is your actual game. The next lesson shows a simple game.js file.
+4. Using the web browser, view the game.html to see how it looks.
+5. Decide what you want to change in the game.
+6. If needed, add graphics or sound files to your game directory.
+7. Using the text editor, edit the game.js file to make any changes necessary.
+8. Go back to step number 4.
+
+In the next lesson you will see the game.html and game.js files you can start with.
+
+1.3 The Core Game
+-----------------------------------------------------------
+Objective: Write the initial code for a match-3 game.
+
+### game.html
+
+Below is the game.html file we will start with. The file is basically an HTML5 container that holds your game. You will view the game.html file with a web browser to play your game.
+
+<pre class="prettyprint linenums:1" style="font-size:10pt;">
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Game Blueprint: Match 3 Basic</title>
+	<style type="text/css">
+		html,body {
+			background-color: #000;
+			color: #fff;
+			margin: 0;
+			padding: 0;
+		}
+		#canvas {
+			position: absolute;
+			left: 0;
+			right: 0;
+			top: 0;
+			bottom: 0;
+			margin: auto;
+		}
+	</style>
+
+</head>
+<body>
+	<div id="game"><canvas id="canvas" width="800" height="600"></canvas></div>
+    <script type="text/javascript" src="game.js"></script>
+</body>
+</html>
+</pre>
+
+This is not a course on HTML5, so we won't go over all the details of the HTML file. What is important to know is the canvas tag. The canvas element is like a screen inside your web browser, and the game will be drawing on that screen.
+
+### game.js
+
+Below is the game.js file we will start with. The file is the actual game program, or code. For this course we will put all of the game code into this one file.
+
+<pre class="prettyprint linenums:1" style="font-size:10pt;">
+///////////////////////////
+// Lesson 1.3 The Core Game
+
+function game_core() {
+    update();  // check the rules
+    draw();    // draw the game on the screen
+    vfx();     // display visual effects
+    sfx();     // play sound effects
+} // game_core()
+</pre>
+
+// Call the game core every 80ms (i.e., every 0.08 seconds)
+setInterval(game_core, 80);
+
+comment
+:A part of code that does not get executed. Comments are documentation for the human reader. A comment starts with "//" and continues to the end of the line.
+
+You need to know there are two types of code in the file: functions and immediate code. Functions are like helpers. Any code can "call" a function, and the function will perform some kind of service. A function will look something like this:
+
+<pre class="prettyprint linenums:1" style="font-size:10pt;">
+function my_function() {
+    // do something useful
+} // my_function() <- this comment makes the code more readable for humans
+</pre>
+
+The word function is followed by the name of the function, and the function itself is between two braces. You may hear that functions can take arguments and return results, but we will be using very simple functions that do neither of those things.
+
+Functions are only run when another piece of code runs them. In contract, immediate code is run when the code is loaded in the browser. Immediate code is the code not inside functions.
+
+function
+:A piece of helper code. It does something useful when called.
+immediate code
+:Code that is not inside a function. Immediate code is run "immediately" when it is loaded by the browser.
+
+### game_core()
+
+Our main function is called "game_core()." The function will be called on a regular basis. (Every 0.08 seconds, in fact.) The game_core() function will call other functions. It will check the game rules, draw the game on the screen, display visual effects, and play sound effects.
+
+### setInterval(game_core, 80)
+
+Ok, maybe I told a white lie. We will be using arguments (or function parameters) with some functions. The call to setInterval is our first piece of immediate code. It calls a special function that lets the browser know we want the game_core() function to run every 80 milliseconds. (80 milliseconds is also 80ms or 0.08 seconds.)
+
+### Conclusion
+
+Our basic game is made of the game.html and game.js files. What we have so far will do absolutely nothing and will also produce some errors in the browser. That's okay for now. Before we start filling in the missing pieces we need to figure out what kind of game we are making. The next lesson covers exactly that.
+
+Module 2: Game Design
+===========================================================
+
+2.1 Match-3 Games
+-----------------------------------------------------------
+Objective: Identify and describe some existing match-3 games.
+
+- Grid of multicolored tiles. Swap 2 tiles to get 3 in a row.
+- Example games
+-- Candy Crush Saga (2012, King)
+-- Bejeweled (2001, PopCap Games)
+-- Shariki (1994, Eugene Alemzhin)
+
+2.2 Adapting the Game
+-----------------------------------------------------------
+Objective: Describe how a match-3 game can be used for education.
+
+- Repetitive game; make route learning easier.
+- Each tile represents a learning concept.
+- Add a fact panel.
+
+2.3 Game Design
+-----------------------------------------------------------
+Objective: Describe the basic structure and operations of a match-3 game.
+
+- Display
+- Input
+- Rules
+
+Module 3: Data
+===========================================================
+
+3.1 Game Variables
+-----------------------------------------------------------
+Objective: Write code that implements variables representing game state.
+
+### Things that Change
+
+A <dfn>variable</dfn> is one or more letters that stand for something that changes. If you had basic algebra you may remember variables -- things like <code>x</code> and <code>y</code>. When we are writing games, we can use variables that are much more descriptive. For example, <code>the_number_of_monsters_grandma_defeated</code>. Now that's a variable!
+
+variable
+:One or more letters that stand for something that changes. A variable is a letter followed by zero or more letters, numbers, or underscores (_).
+
+Below is a list of the main variables we will use in our game.  Remember that the two // characters start a comment, and the computer will skip over our comments.
+
+<pre class="prettyprint linenums:1" style="font-size:10pt;">
+////////////////////////////
+// Lesson 3.1 Game Variables
+
+// Utility Variables
+var x, y, i;
+
+// Game Mechanics
+var level = 1;                  // what level we are on
+var swaps_per_level = 18;       // how many swaps for each level
+var score = 0;                  // our current score
+var swaps_made = 0;             // how many swaps we have made this level
+var fact_displayed = 0;         // which fact is displayed
+var grid_width = 6;             // how many tiles wide the grid is
+var grid_height = 7;            // how many tiles tall the grid is
+var number_of_tile_types = 8;   // total number of tile types
+var tile_types_per_level = 6;   // how many tile types are on a single level
+
+// Graphics Parameters
+var tile_width = 75;            // how wide a tile image is (in pixels)
+var tile_height = 75;           // how tall a tile image is (in pixels)
+var grid_offset_x = 324;        // how far to the right the grid starts
+var grid_offset_y = 36;         // how far down the grid starts
+
+// Triggers
+var trigger_click_sfx = false;  // should we play a click sound?
+var trigger_clear_sfx = false;  // should we play a clear sound?
+var trigger_bonus_sfx = false;  // should we play a bonus sound?
+</pre>
+
+### Utility Variables
+
+The first set of variables -- <code>x</code>, <code>y</code>, and <code>i</code> -- will be used for counting things. They will be used mostly in <code>for</code> loops, which you will learn about later.
+
+### Game Mechanics
+
+The second set of variables will keep track of how the game is going. They will keep track of things like what level we're on and what the score is.  They will also track things like how big our playing grid is, and how many types of tiles there are. (Good things to experiment with!)
+
+### Graphics Parameters
+
+We use graphics variables to describe how big a tile image is, and where the grid of tiles should be drawn on the screen. If you experiment with the grid offset variables (i.e., change their values), then you can see how to move the game grid around on the screen.
+
+### Triggers
+
+The fourth group of variables we describe here are the <dfn>triggers</dfn>. Notice how all the variables so far have stood for numbers? Not the triggers -- they are either <code>true</code> or <code>false</code>. If a trigger is true, then we want something to happen -- something was triggered. False means all is normal and nothing special should happen.
+
+trigger
+:A variable that is either <code>true</code> or <code>false</code>, and determines whether something special should happen. (We made up the term "trigger" for this game. The word "trigger" does not mean anything special to the computer.)
+
+3.2 Input and Output
+-----------------------------------------------------------
+Objective: List the variables used to manage input and output.
+
+### Special Variables
+
+The variables in this lesson are special -- they will be used to get input from the player and to draw on the screen.  The player <dfn>input</dfn> will come from the mouse and the <dfn>output</dfn> will appear on the screen.
+
+Input
+:The information the player puts into the game to control.
+Output
+:The information the game gives back to the player.
+
+The player will control the game with the mouse. The player puts the mouse pointer over a tile and then clicks to select the tile. The following variables are used to track where the mouse is pointing.
+
+<pre class="prettyprint linenums:1" style="font-size:10pt;">
+//////////////////////////////
+// Lesson 3.2 Input and Output
+
+// Input
+var mouse_x; // where is the mouse on the canvas
+var mouse_y; // where is the mouse on the canvas
+var tile_x; // which tile does the mouse point to
+var tile_y; // which tile does the mouse point to
+</pre>
+
+After the player points to a tile, a click of the mouse will select the tile. These variables are used to track the first tile clicked (primary) and second tile clicked (secondary).
+
+<pre class="prettyprint linenums:1" style="font-size:10pt;">
+// Tile selection
+var primary_select_x;
+var primary_select_y;
+var secondary_select_x;
+var secondary_select_y;
+</pre>
+
+In module five we'll talk about getting information from the mouse.
+
+For output we will use a special HTML5 feature called the <dfn>canvas</dfn>. The HTML5 element is called the <dfn>canvas</dfn>, but the thing we will use to do the drawing is called the <dfn>context</dfn>.
+
+Canvas
+:An HTML5 element that allows rendering to the screen.
+Context
+:The mechanism used to draw. Similar to a page you can draw on.
+
+<pre class="prettyprint linenums:1" style="font-size:10pt;">
+// Output
+var canvas = document.getElementById("canvas");
+var context = canvas.getContext("2d");
+</pre>
+
+After the canvas and context variables are set, we will use the context variable to do all of our drawing.
+
+3.3 Game State
+-----------------------------------------------------------
+Objective: List the internal states of a match-3 game.
+
+From the game design in module two we know the game has five states. In the code we need a way to define those five states, and then use a variable to keep track of the current game state.
+
+We're going to create a new type of variable called a <dfn>mode</dfn> variable. Each mode corresponds to a different game state. The game_state variable will keep track of which mode we're in.
+
+
+
+<pre class="prettyprint linenums:1" style="font-size:10pt;">
+////////////////////////
+// Lesson 3.3 Game State
+
+var mode = {
+    STARTING: 0,
+    RUNNING : 1,
+    SELECT_ONE : 2,
+    SELECT_TWO : 3,
+    GAME_OVER : 4
+};
+// No scoring while game is starting.
+var game_state = mode.STARTING;
+</pre>
+
+
+
+3.4 Game Board
+-----------------------------------------------------------
+Objective: Write code that initializes the game board.
+
+////////////////////////
+// Lesson 3.4 Game Board
+
+var tiles = [];
+for (var i=0; i<grid_width; i++) {
+    tiles[i] = new Array(grid_height);
+} // for i
+
+var min_tile;
+var max_tile;
+
+function random_tile() {
+    var tile;
+    min_tile = ((level - 1) % number_of_tile_types) + 1;
+    max_tile = min_tile + 5;
+    tile = Math.floor(Math.random() * (max_tile - min_tile + 1)) + min_tile;
+    if (tile > number_of_tile_types) {
+        tile = tile - number_of_tile_types;
+    } // if
+    return tile;
+} // random_tile()
+
+function scramble_tiles() {
+    for (x=0; x<grid_width; x++) {
+        for (y=0; y<grid_height; y++) {
+            tiles[x][y] = random_tile();
+        } // for y
+    }  // for x
+} // scramble_tiles()
+scramble_tiles();
+
+3.5 Debugging
+-----------------------------------------------------------
+
+///////////////////////
+// Lesson 3.5 Debugging
+var possible_swaps_h = 0;
+var possible_swaps_v = 0;
+
+
+Module 4: Display
+===========================================================
+
+4.1 Loading Images
+-----------------------------------------------------------
+Objective: Load images into the game.
+
+////////////////////////////
+// Lesson 4.1 Loading Images
+
+var background_img = new Image(800, 600);
+background_img.src = 'media/background.png';
+
+var framing_img = new Image(800, 600);
+framing_img.src = 'media/framing.png';
+
+var tile_img = [];
+for (i = 0; i <= number_of_tile_types; i++) {
+    tile_img[i] = new Image(tile_width, tile_height);
+    tile_img[i].src = "media/tile" + i + ".png";
+} // for i
+
+var message_img = new Image(763,600);
+message_img.src = 'media/tile0.png';
+
+-----------------------------------------------------------
+4.2 Drawing in Layers
+Objective: Explain how images are drawn in layers.
+
+///////////////////////////////
+// Lesson 4.2 Drawing in Layers
+
+function draw() {
+    draw_background();
+    draw_framing();
+    draw_fact();
+    draw_tiles();
+    draw_message();
+} // draw()
+
+4.3 Background and Framing
+-----------------------------------------------------------
+Objective: Draw images on the screen.
+
+////////////////////////////////////
+// Lesson 4.3 Background and Framing
+
+// Background
+function draw_background() {
+    context.drawImage(background_img, 0, 0);
+} // draw_background()
+
+// Framing
+function draw_framing() {
+    context.drawImage(framing_img, 0, 0);
+} // draw_frame()
+
+4.4 Draw a Grid of Tiles
+-----------------------------------------------------------
+Objective: Display a grid of tiles on the screen.
+
+//////////////////////////////////
+// Lesson 4.4 Draw a Grid of Tiles
+
+function draw_tiles() {
+    for (x = 0; x < grid_width; x++) {
+        for (y = 0; y < grid_height; y++) {
+            context.drawImage(tile_img[tiles[x][y]],
+                              grid_offset_x + (x * tile_width),
+                              grid_offset_y + (y * tile_height));
+        } // for y
+    } // for x
+} // draw_tiles()
+
+Module 5: Input
+===========================================================
+
+5.1 Tracking Mouse Movement
+-----------------------------------------------------------
+Objective: Write code that tracks the mouse position on the screen.
+
+//////////////////////////////////
+// Lesson 5.1 Tracking Mouse Movement
+
+canvas.onmousemove = function(event) {
+    mouse_x = event.clientX - canvas.offsetLeft;
+    mouse_y = event.clientY - canvas.offsetTop;
+    tile_x = Math.floor((mouse_x - grid_offset_x) / tile_width);
+    tile_y = Math.floor((mouse_y - grid_offset_y) / tile_height);
+}; // onmousemove()
+
+5.2 Clicking Tiles
+-----------------------------------------------------------
+Objective: Write code that records when a tile has been clicked.
+
+////////////////////////////
+// Lesson 5.2 Clicking Tiles
+
+canvas.onclick = function() {
+    if (tile_x >= 0 && tile_x < grid_width &&
+        tile_y >= 0 && tile_y < grid_height) {
+        switch (game_state) {
+            case mode.STARTING:
+            case mode.RUNNING:
+                primary_select_x = tile_x;
+                primary_select_y = tile_y;
+                game_state = mode.SELECT_ONE;
+                break;
+            case mode.SELECT_ONE:
+                secondary_select_x = tile_x;
+                secondary_select_y = tile_y;
+                game_state = mode.SELECT_TWO;
+                break;
+            default:
+                break;
+        } // switch
+    } // if
+}; // onclick()
+
+Module 6: Rules of the Game
+===========================================================
+
+6.1 Main Rules
+-----------------------------------------------------------
+Objective: List the main rules of the game.
+
+////////////////////////
+// Lesson 6.1 Main Rules
+
+function update() {
+    replace_tiles();
+    falling_tiles();
+    clear_tiles();
+    swap_tiles();
+    count_possible_swaps();
+} // update()
+
+6.2 Replacing Tiles
+-----------------------------------------------------------
+Objective: Replace blank spots in the grid with new tiles.
+
+/////////////////////////////
+// Lesson 6.2 Replacing Tiles
+
+// Replace tiles at the top
+function replace_tiles() {
+    var created_tile = false;
+    for (x = 0; x < grid_width; x++) {
+        if (tiles[x][0] == 0) {
+            tiles[x][0] = random_tile();
+            created_tile = true;
+        } // if
+    } // for x
+    if (created_tile == true) {
+        check_new_level();
+    } // if
+} // replace_tiles()
+
+// Check for next level
+function check_new_level() {
+    if (swaps_made > swaps_per_level) {
+        level++;
+        swaps_made = 0;
+        scramble_tiles();
+    } // if
+} // check_new_level()
+
+6.3 Falling Tiles
+-----------------------------------------------------------
+Objective: Make existing tiles fall down when there is a blank space below.
+
+///////////////////////////
+// Lesson 6.3 Falling Tiles
+
+function falling_tiles() {
+    for (y = 1; y < grid_height; y++) {
+        for (x = 0; x < grid_width; x++) {
+            if (tiles[x][y] == 0) {
+                tiles[x][y] = tiles[x][y-1];
+                tiles[x][y-1] = 0;
+                trigger_click_sfx = true;
+            } // if
+        } // for x
+    } // for y
+} // falling_tiles()
+
+6.4 Clear 3-in-a-Row
+-----------------------------------------------------------
+Objective: Find any 3-in-a-row patterns and clear those tiles.
+
+//////////////////////////////
+// Lesson 6.4 Clear 3-in-a-Row
+
+function clear_tiles() {
+    // Check for horizontal 3-in-a-row
+    for (y = 0; y <  grid_height; y++) {
+        for (x = 2; x < grid_width; x++) {
+            if (tiles[x][y] == tiles[x-1][y] &&
+                tiles[x][y] == tiles[x-2][y]) {
+                // Found 3 in a row!
+                // Clear any extra tiles in the row that match
+                for (i = x + 1; i < grid_width; i++) {
+                    if (tiles[i][y] == tiles[x][y]) {
+                        tiles[i][y] = 0;
+                        if (game_state == mode.RUNNING) {
+                            score = score + 2000;
+                            trigger_bonus_sfx = true;
+                        } // if
+                    } else {
+                        // stop checking if it did not match
+                        break;
+                    } // if-else
+                } // for i
+                // Clear the 3 . . .
+                tiles[x][y] = 0;
+                tiles[x-1][y] = 0;
+                tiles[x-2][y] = 0;
+                if (game_state == mode.RUNNING) {
+                    score = score + 500;
+                    trigger_clear_sfx = true;
+                } // if
+            } // if match-3
+        } // for x
+    } // for y
+
+    // Check for vertical 3-in-a-row
+    for (x = 0; x <  grid_width; x++) {
+        for (y = 2; y < grid_height; y++) {
+            if (tiles[x][y] == tiles[x][y-1] &&
+                tiles[x][y] == tiles[x][y-2]) {
+                // Found 3 in a row!
+                // Clear any extra tiles in the column that match
+                for (i = y + 1; i < grid_height; i++) {
+                    if (tiles[x][i] == tiles[x][y]) {
+                        tiles[x][i] = 0;
+                        if (game_state == mode.RUNNING) {
+                            score = score + 2000;
+                            trigger_bonus_sfx = true;
+                        } // if
+                    } else {
+                        // stop checking if it did not match
+                        break;
+                    } // if-else
+                } // for i
+                // Clear the 3 . . .
+                tiles[x][y] = 0;
+                tiles[x][y-1] = 0;
+                tiles[x][y-2] = 0;
+                if (game_state == mode.RUNNING) {
+                    score = score + 500;
+                    trigger_clear_sfx = true;
+                } // if
+            } // if match-3
+        } // for y
+    } // for x
+
+} // clear_tiles()
+
+6.5 Swapping Tiles
+-----------------------------------------------------------
+Objective: Swap two tiles.
+
+////////////////////////////
+// Lesson 6.5 Swapping Tiles
+
+function swap_tiles() {
+    var match_found = false;
+    if (game_state == mode.SELECT_TWO) {
+
+        if (((Math.abs(primary_select_x - secondary_select_x) < 2) &&
+             (primary_select_y == secondary_select_y)) ||
+            ((Math.abs(primary_select_y - secondary_select_y) < 2) &&
+             (primary_select_x == secondary_select_x))) {
+
+            var temp;
+            temp = tiles[primary_select_x][primary_select_y];
+            tiles[primary_select_x][primary_select_y] =
+                tiles[secondary_select_x][secondary_select_y];
+            tiles[secondary_select_x][secondary_select_y] = temp;
+
+            // Check for horizontal 3-in-a-row
+            for (y = 0; y <  grid_height; y++) {
+                for (x = 2; x < grid_width; x++) {
+                    if (tiles[x][y] == tiles[x-1][y] &&
+                        tiles[x][y] == tiles[x-2][y]) {
+                        // Found 3 in a row!
+                        match_found = true;
+                    } // if match
+                } // for y
+            } // for x
+            // Check for vertical 3-in-a-row
+            for (x = 0; x <  grid_width; x++) {
+                for (y = 2; y < grid_height; y++) {
+                    if (tiles[x][y] == tiles[x][y-1] &&
+                        tiles[x][y] == tiles[x][y-2]) {
+                        // Found 3 in a row!
+                        match_found = true;
+                    } // if match
+                } // for y
+            } // for x
+
+            if (match_found == false) {
+                // Swap them back
+                temp = tiles[primary_select_x][primary_select_y];
+                tiles[primary_select_x][primary_select_y] =
+                    tiles[secondary_select_x][secondary_select_y];
+                tiles[secondary_select_x][secondary_select_y] = temp;
+            } else {
+                swaps_made++;
+            } // if-else
+        } // if
+        game_state = mode.RUNNING; // clear selection
+    } // if
+} // swap_tiles()
+
+6.6 Game Over?
+-----------------------------------------------------------
+Objective: End the game when no moves are left.
+
+////////////////////////
+// Lesson 6.6 Game Over?
+
+// Count the number of swaps that could be made
+function count_possible_swaps() {
+    possible_swaps_h = 0;
+    possible_swaps_v = 0;
+
+    // Hold a scantron score card over the grid, one tile at a time.
+
+    // count possible horizontal swaps
+    // Inline swaps
+    for (y = 0; y < grid_height; y++) {
+        for (x = 3; x < grid_width; x++) {
+            if (tiles[x][y] == tiles[x-1][y] &&
+                tiles[x][y] == tiles[x-3][y]) {
+                    possible_swaps_h++;
+                } // if X-XX
+            if (tiles[x][y] == tiles[x-2][y] &&
+                tiles[x][y] == tiles[x-3][y]) {
+                    possible_swaps_h++;
+                } // if XX-X
+        } // for x
+    } // for y
+    // Out-of-line swaps
+    for (y = 2; y < grid_height; y++) {
+        for (x = 1; x < grid_width; x++) {
+            // case 1
+            if (tiles[x][y] == tiles[x][y-1] &&
+                 tiles[x][y] == tiles[x-1][y-2]) {
+                possible_swaps_h++;
+            } // if
+            // case 2
+            if (tiles[x][y] == tiles[x-1][y-1] &&
+                 tiles[x][y] == tiles[x][y-2]) {
+                possible_swaps_h++;
+            } // if
+            // case 3
+            if (tiles[x][y] == tiles[x-1][y-1] &&
+                 tiles[x][y] == tiles[x-1][y-2]) {
+                possible_swaps_h++;
+            } // if
+            // case 4
+            if (tiles[x-1][y] == tiles[x][y-1] &&
+                 tiles[x-1][y] == tiles[x-1][y-2]) {
+                possible_swaps_h++;
+            } // if
+            // case 5
+            if (tiles[x-1][y] == tiles[x-1][y-1] &&
+                 tiles[x-1][y] == tiles[x][y-2]) {
+                possible_swaps_h++;
+            } // if
+            // case 6
+            if (tiles[x-1][y] == tiles[x][y-1] &&
+                 tiles[x-1][y] == tiles[x][y-2]) {
+                possible_swaps_h++;
+            } // if
+        } // for x
+    } // for y
+
+    // count possible vertical swaps
+    // Inline swaps
+    for (x = 0; x < grid_width; x++) {
+        for (y = 3; y < grid_height; y++) {
+            if (tiles[x][y] == tiles[x][y-1] &&
+                tiles[x][y] == tiles[x][y-3]) {
+                    possible_swaps_v++;
+                } // if
+            if (tiles[x][y] == tiles[x][y-2] &&
+                tiles[x][y] == tiles[x][y-3]) {
+                    possible_swaps_v++;
+                } // if
+        } // for y
+    } // for x
+    // Out-of-line swaps
+    for (x = 2; x < grid_width; x++) {
+        for (y = 1; y < grid_height; y++) {
+            // case 1
+            if (tiles[x][y] == tiles[x-1][y] &&
+                 tiles[x][y] == tiles[x-2][y-1]) {
+                possible_swaps_v++;
+            } // if
+            // case 2
+            if (tiles[x][y] == tiles[x-1][y-1] &&
+                 tiles[x][y] == tiles[x-2][y]) {
+                possible_swaps_v++;
+            } // if
+            // case 3
+            if (tiles[x][y] == tiles[x-1][y-1] &&
+                 tiles[x][y] == tiles[x-2][y-1]) {
+                possible_swaps_v++;
+            } // if
+            // case 4
+            if (tiles[x][y-1] == tiles[x-1][y] &&
+                 tiles[x][y-1] == tiles[x-2][y-1]) {
+                possible_swaps_v++;
+            } // if
+            // case 5
+            if (tiles[x][y-1] == tiles[x-1][y-1] &&
+                 tiles[x][y-1] == tiles[x-2][y]) {
+                possible_swaps_v++;
+            } // if
+            // case 6
+            if (tiles[x][y-1] == tiles[x-1][y] &&
+                 tiles[x][y-1] == tiles[x-2][y]) {
+                possible_swaps_v++;
+            } // if
+        } // for x
+    } // for y
+
+} // count_possible_swaps()
+
+Module 7: Visual Effects
+===========================================================
+
+7.1 Loading and Looping
+-----------------------------------------------------------
+Objective: Load effect images and display visual effects.
+
+/////////////////////////////////
+// Lesson 7.1 Loading and Looping
+
+// Visual effects images
+var highlite_img = new Image(75, 75);
+highlite_img.src = "media/highlite.png";
+
+var progress_img = new Image(1, 38);
+progress_img.src = "media/progress.png";
+
+// Set font information
+context.font="20px monospace";
+context.fillStyle = "#fff";
+context.textAlign = "end";
+
+// Main visual effects loop
+function vfx() {
+    selection_fx();
+    smooth_tile_drop_fx();
+    draw_score();
+    draw_fact();
+    draw_debug();
+} // vfx()
+
+7.2 Selection Effect
+-----------------------------------------------------------
+Objective: Display which tiles have been selected.
+
+//////////////////////////////
+// Lesson 7.2 Selection Effect
+
+function selection_fx() {
+    if (game_state == mode.SELECT_ONE || game_state == mode.SELECT_TWO) {
+            context.drawImage(highlite_img,
+                              grid_offset_x + (primary_select_x * tile_width),
+                              grid_offset_y + (primary_select_y * tile_height));
+    } // if
+    if (game_state == mode.SELECT_TWO) {
+            context.drawImage(highlite_img,
+                              grid_offset_x + (secondary_select_x * tile_width),
+                              grid_offset_y + (secondary_select_y * tile_height));
+    } // if
+} // selection_fx()
+
+7.3 Smooth Dropping Tiles
+-----------------------------------------------------------
+Objective: Make tile dropping look less jumpy.
+
+///////////////////////////////////
+// Lesson 7.3 Smooth Dropping Tiles
+
+function smooth_tile_drop_fx() {
+    for (y = 1; y < grid_height; y++) {
+        for (x = 0; x < grid_width; x++) {
+            if (tiles[x][y] == 0) {
+                context.drawImage(tile_img[tiles[x][y-1]],
+                                  grid_offset_x + (x * tile_width),
+                                  grid_offset_y + ((y-1) * tile_height),
+                                  tile_width,
+                                  tile_height * 1.25
+                                  );
+            } // if
+        } // for x
+    } // for y
+} // smooth_tile_drop_fx()
+
+7.4 What's the score?
+-----------------------------------------------------------
+Objective: Display the level and score.
+
+///////////////////////////////
+// Lesson 7.4 What's the score?
+
+function draw_score() {
+    // Level Display:  40x135  -  85x135
+    // Progress Bar:  96x110  -   273x110
+    //                96x148  -   273x148
+    // Score: 40x200 - 265x200
+    context.fillText(level, 85, 135);
+    context.fillText(score, 265, 215);
+    var x_start = 96;
+    var x_end = 273;
+    var progress_width = Math.floor((swaps_made / (swaps_per_level+1)) * (x_end - x_start));
+    context.drawImage(progress_img, 96, 110, progress_width, 38);
+    /*
+    context.beginPath();
+    context.rect(96, 110, progress_width, 37);
+    context.fill();
+    */
+} // draw_score()
+
+7.5 Just the Facts
+-----------------------------------------------------------
+Objective: Display a fact image.
+
+////////////////////////////
+// Lesson 7.5 Just the Facts
+
+function draw_fact() {
+    // Factcard: 31x279
+    // noop
+} // draw_fact()
+
+Module 8: Sound Effects
+===========================================================
+
+8.1 Detect Supported Audio
+-----------------------------------------------------------
+Objective: Detect which audio formats the browser supports.
+
+////////////////////////////////////
+// Lesson 8.1 Detect Supported Audio
+
+var sfx_extension = "";
+var test_sfx = new Audio();
+if (test_sfx.canPlayType("audio/ogg")) {
+    sfx_extension = "ogg";
+} else if (test_sfx.canPlayType("audio/mpeg")) {
+    sfx_extension = "mp3";
+} // if-else
+
+8.2 Load Audio
+-----------------------------------------------------------
+Objective: Load audio files.
+
+////////////////////////
+// Lesson 8.2 Load Audio
+
+var click_sfx = new Audio("media/click." + sfx_extension);
+var clear_sfx = new Audio("media/clear." + sfx_extension);
+var bonus_sfx = new Audio("media/bonus." + sfx_extension);
+
+8.3 Play Triggered Audio
+-----------------------------------------------------------
+Objective: Play audio.
+
+//////////////////////////////////
+// Lesson 8.3 Play Triggered Audio
+
+function sfx() {
+    if (sfx_extension != "") {
+        if (trigger_click_sfx == true) {
+            click_sfx.play();
+            trigger_click_sfx = false;
+        } // if
+        if (trigger_clear_sfx == true) {
+            clear_sfx.play();
+            trigger_clear_sfx = false;
+        } // if
+        if (trigger_bonus_sfx == true) {
+            bonus_sfx.play();
+            trigger_bonus_sfx = false;
+        } // if
+    } // if
+} // sfx()
+
+Module 9: Going Forward
+===========================================================
+
+9.1 - Customization
+-----------------------------------------------------------
+Objective: Describe how to easily customize the game.
+
+9.2 - Extending the Game
+-----------------------------------------------------------
+Objective: List ideas for extending the game.
+
+9.3 - Conclusion
+-----------------------------------------------------------

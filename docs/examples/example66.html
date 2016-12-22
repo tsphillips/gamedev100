@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<!--
+Copyright (c)2014 Thomas S. Phillips..
+For non-commercial use only.
+You may use this file for personal educational use, or as a basis for
+creating your own unique derivatives.
+
+
+ 
+-->
+<html>
+<head>
+	<title>Example 6.6 - Martian Orbit</title>
+	<style type="text/css">
+	    .example {
+	        background:white;
+	        color:black;
+	        border-style:solid;
+	        border-color:black;
+	        border-width:3px;
+	    }
+        h1 {
+            text-align:center;
+        }
+		.example-canvas {
+            padding-left: 0;
+            padding-right: 0;
+            margin-left: auto;
+            margin-right: auto;
+            display: block;
+        }
+	</style>
+	<script src="../scripts/google-code-prettify/run_prettify.js"></script>
+</head>
+<body>
+    <div class="example">
+
+    <h1>Example 6.6 - Martian Orbit</h1>
+    <p align="center">
+        This is a live example.
+        The code is embedded in the web page.
+        View the page source with your browser to see it all.
+    </p>
+
+	<canvas id="canvas" class="example-canvas" width="400" height="300"></canvas>
+
+	<script>
+    //////////////////////////
+    // Lesson 6.6 Example
+    // Comments start with "//"
+    
+    // What if Mars orbited the Earth?
+    
+    var martian_angle = 0;
+    // Try different orbit speeds, like 2, 5, or 15.
+    var orbit_speed = 1;
+
+    // Use two variables to track the mouse location.
+    var mouse_x; // where is the mouse on the canvas
+    var mouse_y; // where is the mouse on the canvas
+
+    // We drawn on the HTML5 canvas.
+    var canvas = document.getElementById("canvas");
+
+    // The canvas is an element on the web page.
+    // As such, it knowns about the mouse.
+    // We want to tell the canvas what to do when it
+    // sees the mouse move.
+    // Since a function is a list of commands to execute at
+    // a later time, we will bundle up our instructions into
+    // a function.
+    // The tricky part here is that the function does not need a name.
+    // We never call the function, so we don't care about the
+    // function's name.
+    // This type of function is called an unnamed,
+    // anonymous, or lambda function.
+    canvas.onmousemove = function(event) {
+        mouse_x = event.clientX - canvas.offsetLeft;
+        mouse_y = event.clientY - canvas.offsetTop;
+    }; // onmousemove()
+
+    // From the above, the event object has information about the
+    // mouse movement.
+    // event.clientX is the mouse's X position on the web page.
+    // event.clientY is the mouse's Y position on the web page.
+    //
+    // The canvas also knows about it's position.
+    // canvas.offsetLeft is the canvas's X position on the web page.
+    // canvas.offsetTop is the canvas's Y position on the web page.
+    //
+    // (The details are actually a bit more complex, but the above 
+    //  information is accurate enough to get going making games.)
+    
+    // The "context" variable has functions for drawing on the screen.
+    var context = canvas.getContext("2d");
+    
+    // We will draw some text later.
+    context.font="14px monospace";
+    context.textAlign = "start";
+
+    // game_core() is our main game function.
+    function game_core() {
+       update();  // check the rules
+       draw();    // draw the game on the screen
+       vfx();     // display visual effects
+       sfx();     // play sound effects
+    } // game_core()
+
+    // update() checks the game rules.
+    function update() {
+        // Rule 1:
+        // Rotate Mars around Earth.
+        martian_angle = martian_angle + orbit_speed;
+        if (martian_angle >= 360) {
+            martian_angle = martian_angle - 360;
+        } // if
+    } // update()
+    
+    var earth = new Image(75, 75);
+    earth.src = "tile3.png";
+    var mars = new Image(75, 75);
+    mars.src = "tile4.png";
+    
+    // draw() draws on the screen.
+    function draw() {
+        var x,y;
+        
+        // Draw a black background.
+        context.fillStyle = "#000";
+        context.fillRect(0, 0, canvas.width, canvas.height);
+
+        // Draw the Earth.
+        context.drawImage(earth, mouse_x, mouse_y);
+
+        // Figure out where Mars is and draw it.
+        // The crazy math here is converting polar coordinates to
+        // Cartesian coordinates. To learn more, search the web for:
+        // "convert polar to Cartesian"
+        x = mouse_x + 75 * Math.cos(martian_angle / 360.0 * 2 * Math.PI);
+        y = mouse_y + 75 * Math.sin(martian_angle / 360.0 * 2 * Math.PI);
+        context.drawImage(mars, x, y);
+
+    } // draw()
+    
+    function vfx() {
+        // We have no visual special effects.
+    } // vfx()
+    
+    function sfx() {
+        // We have no sound effects.
+    } // sfx()
+    
+    // Call the game_core function every 16ms (i.e., every 0.016 seconds).
+    // 16ms per draw is roughly 60 frames per second.
+    setInterval(game_core, 16);
+	</script>
+
+    <pre class="prettyprint lang-javascript linenums:1" style="font-size:10pt;">
+    //////////////////////////
+    // Lesson 6.6 Example
+    // Comments start with "//"
+    
+    // What if Mars orbited the Earth?
+    
+    var martian_angle = 0;
+    // Try different orbit speeds, like 2, 5, or 15.
+    var orbit_speed = 1;
+
+    // Use two variables to track the mouse location.
+    var mouse_x; // where is the mouse on the canvas
+    var mouse_y; // where is the mouse on the canvas
+
+    // We drawn on the HTML5 canvas.
+    var canvas = document.getElementById("canvas");
+
+    // The canvas is an element on the web page.
+    // As such, it knowns about the mouse.
+    // We want to tell the canvas what to do when it
+    // sees the mouse move.
+    // Since a function is a list of commands to execute at
+    // a later time, we will bundle up our instructions into
+    // a function.
+    // The tricky part here is that the function does not need a name.
+    // We never call the function, so we don't care about the
+    // function's name.
+    // This type of function is called an unnamed,
+    // anonymous, or lambda function.
+    canvas.onmousemove = function(event) {
+        mouse_x = event.clientX - canvas.offsetLeft;
+        mouse_y = event.clientY - canvas.offsetTop;
+    }; // onmousemove()
+
+    // From the above, the event object has information about the
+    // mouse movement.
+    // event.clientX is the mouse's X position on the web page.
+    // event.clientY is the mouse's Y position on the web page.
+    //
+    // The canvas also knows about it's position.
+    // canvas.offsetLeft is the canvas's X position on the web page.
+    // canvas.offsetTop is the canvas's Y position on the web page.
+    //
+    // (The details are actually a bit more complex, but the above 
+    //  information is accurate enough to get going making games.)
+    
+    // The "context" variable has functions for drawing on the screen.
+    var context = canvas.getContext("2d");
+    
+    // We will draw some text later.
+    context.font="14px monospace";
+    context.textAlign = "start";
+
+    // game_core() is our main game function.
+    function game_core() {
+       update();  // check the rules
+       draw();    // draw the game on the screen
+       vfx();     // display visual effects
+       sfx();     // play sound effects
+    } // game_core()
+
+    // update() checks the game rules.
+    function update() {
+        // Rule 1:
+        // Rotate Mars around Earth.
+        martian_angle = martian_angle + orbit_speed;
+        if (martian_angle >= 360) {
+            martian_angle = martian_angle - 360;
+        } // if
+    } // update()
+    
+    var earth = new Image(75, 75);
+    earth.src = "tile3.png";
+    var mars = new Image(75, 75);
+    mars.src = "tile4.png";
+    
+    // draw() draws on the screen.
+    function draw() {
+        var x,y;
+        
+        // Draw a black background.
+        context.fillStyle = "#000";
+        context.fillRect(0, 0, canvas.width, canvas.height);
+
+        // Draw the Earth.
+        context.drawImage(earth, mouse_x, mouse_y);
+
+        // Figure out where Mars is and draw it.
+        // The crazy math here is converting polar coordinates to
+        // Cartesian coordinates. To learn more, search the web for:
+        // "convert polar to Cartesian"
+        x = mouse_x + 75 * Math.cos(martian_angle / 360.0 * 2 * Math.PI);
+        y = mouse_y + 75 * Math.sin(martian_angle / 360.0 * 2 * Math.PI);
+        context.drawImage(mars, x, y);
+
+    } // draw()
+    
+    function vfx() {
+        // We have no visual special effects.
+    } // vfx()
+    
+    function sfx() {
+        // We have no sound effects.
+    } // sfx()
+    
+    // Call the game_core function every 16ms (i.e., every 0.016 seconds).
+    // 16ms per draw is roughly 60 frames per second.
+    setInterval(game_core, 16);
+    </pre>
+    </div>
+
+    <footer align="center">
+        Copyright (c)2014 Thomas S. Phillips..
+    </footer>
+</body>
+</html>

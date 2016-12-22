@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<!--
+Copyright (c)2014 Thomas S. Phillips..
+For non-commercial use only.
+You may use this file for personal educational use, or as a basis for
+creating your own unique derivatives.
+
+
+ 
+-->
+<html>
+<head>
+	<title>Example 5.1 - The Mouse</title>
+	<style type="text/css">
+	    .example {
+	        background:white;
+	        color:black;
+	        border-style:solid;
+	        border-color:black;
+	        border-width:3px;
+	    }
+        h1 {
+            text-align:center;
+        }
+		.example-canvas {
+            padding-left: 0;
+            padding-right: 0;
+            margin-left: auto;
+            margin-right: auto;
+            display: block;
+        }
+	</style>
+	<script src="../scripts/google-code-prettify/run_prettify.js"></script>
+</head>
+<body>
+    <div class="example">
+
+    <h1>Example 5.1 - The Mouse</h1>
+    <p align="center">
+        This is a live example.
+        The code is embedded in the web page.
+        View the page source with your browser to see it all.
+    </p>
+
+	<canvas id="canvas" class="example-canvas" width="200" height="150"></canvas>
+
+	<script>
+    //////////////////////////
+    // Lesson 5.1 Example
+    // Comments start with "//"
+    
+    // Unnamed functions and mouse locations, oh my!
+    // We will use an unnamed function to track the mouse.
+    
+    // Use two variables to track the mouse location.
+    var mouse_x; // where is the mouse on the canvas
+    var mouse_y; // where is the mouse on the canvas
+
+    // We drawn on the HTML5 canvas.
+    var canvas = document.getElementById("canvas");
+
+    // The canvas is an element on the web page.
+    // As such, it knowns about the mouse.
+    // We want to tell the canvas what to do when it
+    // sees the mouse move.
+    // Since a function is a list of commands to execute at
+    // a later time, we will bundle up our instructions into
+    // a function.
+    // The tricky part here is that the function does not need a name.
+    // We never call the function, so we don't care about the
+    // function's name.
+    // This type of function is called an unnamed,
+    // anonymous, or lambda function.
+    canvas.onmousemove = function(event) {
+        mouse_x = event.clientX - canvas.offsetLeft;
+        mouse_y = event.clientY - canvas.offsetTop;
+    }; // onmousemove()
+
+    // From the above, the event object has information about the
+    // mouse movement.
+    // event.clientX is the mouse's X position on the web page.
+    // event.clientY is the mouse's Y position on the web page.
+    //
+    // The canvas also knows about it's position.
+    // canvas.offsetLeft is the canvas's X position on the web page.
+    // canvas.offsetTop is the canvas's Y position on the web page.
+    //
+    // (The details are actually a bit more complex, but the above 
+    //  information is accurate enough to get going making games.)
+    
+    // The "context" variable has functions for drawing on the screen.
+    var context = canvas.getContext("2d");
+    
+    // We will draw some text later.
+    context.font="14px monospace";
+    context.textAlign = "start";
+
+    // game_core() is our main game function.
+    function game_core() {
+       update();  // check the rules
+       draw();    // draw the game on the screen
+       vfx();     // display visual effects
+       sfx();     // play sound effects
+    } // game_core()
+
+    // update() checks the game rules.
+    function update() {
+        // There are no rules.
+    } // update()
+    
+    // draw() draws on the screen.
+    function draw() {
+
+        context.fillStyle = "#000";        // #000 is black.
+        context.fillRect(0, 0, 200, 150);  // Draw a rectangle.
+
+        context.fillStyle = "#fff";        // #fff is white.
+        // Display where the mouse is.
+        context.fillText("(" + mouse_x + "," + mouse_y + ")",
+                         mouse_x, mouse_y);
+
+    } // draw()
+    
+    function vfx() {
+        // We have no visual special effects.
+    } // vfx()
+    
+    function sfx() {
+        // We have no sound effects.
+    } // sfx()
+    
+    // Call the game_core function every 16ms (i.e., every 0.016 seconds).
+    // 16ms per draw is roughly 60 frames per second.
+    setInterval(game_core, 16);
+	</script>
+
+    <pre class="prettyprint lang-javascript linenums:1" style="font-size:10pt;">
+    //////////////////////////
+    // Lesson 5.1 Example
+    // Comments start with "//"
+    
+    // Unnamed functions and mouse locations, oh my!
+    // We will use an unnamed function to track the mouse.
+    
+    // Use two variables to track the mouse location.
+    var mouse_x; // where is the mouse on the canvas
+    var mouse_y; // where is the mouse on the canvas
+
+    // We drawn on the HTML5 canvas.
+    var canvas = document.getElementById("canvas");
+
+    // The canvas is an element on the web page.
+    // As such, it knowns about the mouse.
+    // We want to tell the canvas what to do when it
+    // sees the mouse move.
+    // Since a function is a list of commands to execute at
+    // a later time, we will bundle up our instructions into
+    // a function.
+    // The tricky part here is that the function does not need a name.
+    // We never call the function, so we don't care about the
+    // function's name.
+    // This type of function is called an unnamed,
+    // anonymous, or lambda function.
+    canvas.onmousemove = function(event) {
+        mouse_x = event.clientX - canvas.offsetLeft;
+        mouse_y = event.clientY - canvas.offsetTop;
+    }; // onmousemove()
+
+    // From the above, the event object has information about the
+    // mouse movement.
+    // event.clientX is the mouse's X position on the web page.
+    // event.clientY is the mouse's Y position on the web page.
+    //
+    // The canvas also knows about it's position.
+    // canvas.offsetLeft is the canvas's X position on the web page.
+    // canvas.offsetTop is the canvas's Y position on the web page.
+    //
+    // (The details are actually a bit more complex, but the above 
+    //  information is accurate enough to get going making games.)
+    
+    // The "context" variable has functions for drawing on the screen.
+    var context = canvas.getContext("2d");
+    
+    // We will draw some text later.
+    context.font="14px monospace";
+    context.textAlign = "start";
+
+    // game_core() is our main game function.
+    function game_core() {
+       update();  // check the rules
+       draw();    // draw the game on the screen
+       vfx();     // display visual effects
+       sfx();     // play sound effects
+    } // game_core()
+
+    // update() checks the game rules.
+    function update() {
+        // There are no rules.
+    } // update()
+    
+    // draw() draws on the screen.
+    function draw() {
+
+        context.fillStyle = "#000";        // #000 is black.
+        context.fillRect(0, 0, 200, 150);  // Draw a rectangle.
+
+        context.fillStyle = "#fff";        // #fff is white.
+        // Display where the mouse is.
+        context.fillText("(" + mouse_x + "," + mouse_y + ")",
+                         mouse_x, mouse_y);
+
+    } // draw()
+    
+    function vfx() {
+        // We have no visual special effects.
+    } // vfx()
+    
+    function sfx() {
+        // We have no sound effects.
+    } // sfx()
+    
+    // Call the game_core function every 16ms (i.e., every 0.016 seconds).
+    // 16ms per draw is roughly 60 frames per second.
+    setInterval(game_core, 16);
+    </pre>
+    </div>
+
+    <footer align="center">
+        Copyright (c)2014 Thomas S. Phillips..
+    </footer>
+</body>
+</html>

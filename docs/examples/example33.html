@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<!--
+Copyright (c)2014 Thomas S. Phillips..
+For non-commercial use only.
+You may use this file for personal educational use, or as a basis for
+creating your own unique derivatives.
+
+
+ 
+-->
+<html>
+<head>
+	<title>Example 3.3</title>
+	<style type="text/css">
+	    .example {
+	        background:white;
+	        color:black;
+	        border-style:solid;
+	        border-color:black;
+	        border-width:3px;
+	    }
+        h1 {
+            text-align:center;
+        }
+		.example-canvas {
+            padding-left: 0;
+            padding-right: 0;
+            margin-left: auto;
+            margin-right: auto;
+            display: block;
+        }
+	</style>
+	<script src="../scripts/google-code-prettify/run_prettify.js"></script>
+</head>
+<body>
+    <div class="example">
+
+    <h1>Example 3.3 - Game States</h1>
+    <p align="center">
+        This is a live example.
+        The code is embedded in the web page.
+        View the page source with your browser to see it all.
+    </p>
+
+	<canvas id="canvas" class="example-canvas" width="200" height="150"></canvas>
+
+	<script>
+    //////////////////////////
+    // Lesson 3.3 Example
+    // Comments start with "//"
+    
+    // Let's revisit the Blink game.
+    // We will use game states to change the color.
+
+    // These are the possible game states:
+    var mode = {
+        RED: 0,
+        GREEN : 1,
+        BLUE : 2,
+    };
+    
+    // This is the variable used to keep track of the current state:
+    var game_state = mode.RED;
+
+    // We drawn on the HTML5 canvas.
+    var canvas = document.getElementById("canvas");
+    
+    // The "context" variable has functions for drawing on the screen.
+    var context = canvas.getContext("2d");
+    
+    // We will draw some text later.
+    context.font="14px monospace";
+    context.textAlign = "center";
+
+    // game_core() is our main game function.
+    function game_core() {
+       update();  // check the rules
+       draw();    // draw the game on the screen
+       vfx();     // display visual effects
+       sfx();     // play sound effects
+    } // game_core()
+
+    // update() checks the game rules.
+    function update() {
+        
+        // The "switch" statement checks a variable and then jumps
+        // to a "case" statement matching the value.
+        // The "break" statement will exit the switch statement.
+        // We use "break" at the end of each "case" block.
+        switch (game_state) {
+            case mode.RED:
+                game_state = mode.GREEN;  // RED changes to GREEN
+                break;
+            case mode.GREEN:
+                game_state = mode.BLUE;   // GREEN changes to BLUE
+                break;
+            case mode.BLUE:
+                game_state = mode.RED;    // BLUE changes to RED
+                break;
+        } // switch
+
+    } // update()
+    
+    // draw() draws on the screen.
+    function draw() {
+
+        // We are going to draw a background color that matches
+        // the current game state.
+        switch (game_state) {
+            case mode.RED:
+                context.fillStyle = "#f00";        // #f00 is red.
+                context.fillRect(0, 0, 200, 150);  // Draw a rectangle.
+                break;
+            case mode.GREEN:
+                context.fillStyle = "#0f0";        // #0f0 is green.
+                context.fillRect(0, 0, 200, 150);  // Draw a rectangle.
+                break;
+            case mode.BLUE:
+                context.fillStyle = "#00f";        // #000 is blue.
+                context.fillRect(0, 0, 200, 150);  // Draw a rectangle.
+                break;
+        } // switch
+
+        context.fillStyle = "#fff";        // #fff is white.
+        context.fillText("You can make games!", 100, 75);
+
+    } // draw()
+    
+    function vfx() {
+        // We have no visual special effects.
+    } // vfx()
+    
+    function sfx() {
+        // We have no sound effects.
+    } // sfx()
+    
+    // Call the game_core function every 500ms (i.e., every 0.500 seconds).
+    // This basically starts the game.
+    setInterval(game_core, 500);
+	</script>
+
+    <pre class="prettyprint lang-javascript linenums:1" style="font-size:10pt;">
+    //////////////////////////
+    // Lesson 3.3 Example
+    // Comments start with "//"
+    
+    // Let's revisit the Blink game.
+    // We will use game states to change the color.
+
+    // These are the possible game states:
+    var mode = {
+        RED: 0,
+        GREEN : 1,
+        BLUE : 2,
+    };
+    
+    // This is the variable used to keep track of the current state:
+    var game_state = mode.RED;
+
+    // We drawn on the HTML5 canvas.
+    var canvas = document.getElementById("canvas");
+    
+    // The "context" variable has functions for drawing on the screen.
+    var context = canvas.getContext("2d");
+    
+    // We will draw some text later.
+    context.font="14px monospace";
+    context.textAlign = "center";
+
+    // game_core() is our main game function.
+    function game_core() {
+       update();  // check the rules
+       draw();    // draw the game on the screen
+       vfx();     // display visual effects
+       sfx();     // play sound effects
+    } // game_core()
+
+    // update() checks the game rules.
+    function update() {
+        
+        // The "switch" statement checks a variable and then jumps
+        // to a "case" statement matching the value.
+        // The "break" statement will exit the switch statement.
+        // We use "break" at the end of each "case" block.
+        switch (game_state) {
+            case mode.RED:
+                game_state = mode.GREEN;  // RED changes to GREEN
+                break;
+            case mode.GREEN:
+                game_state = mode.BLUE;   // GREEN changes to BLUE
+                break;
+            case mode.BLUE:
+                game_state = mode.RED;    // BLUE changes to RED
+                break;
+        } // switch
+
+    } // update()
+    
+    // draw() draws on the screen.
+    function draw() {
+
+        // We are going to draw a background color that matches
+        // the current game state.
+        switch (game_state) {
+            case mode.RED:
+                context.fillStyle = "#f00";        // #f00 is red.
+                context.fillRect(0, 0, 200, 150);  // Draw a rectangle.
+                break;
+            case mode.GREEN:
+                context.fillStyle = "#0f0";        // #0f0 is green.
+                context.fillRect(0, 0, 200, 150);  // Draw a rectangle.
+                break;
+            case mode.BLUE:
+                context.fillStyle = "#00f";        // #000 is blue.
+                context.fillRect(0, 0, 200, 150);  // Draw a rectangle.
+                break;
+        } // switch
+
+        context.fillStyle = "#fff";        // #fff is white.
+        context.fillText("You can make games!", 100, 75);
+
+    } // draw()
+    
+    function vfx() {
+        // We have no visual special effects.
+    } // vfx()
+    
+    function sfx() {
+        // We have no sound effects.
+    } // sfx()
+    
+    // Call the game_core function every 500ms (i.e., every 0.500 seconds).
+    // This basically starts the game.
+    setInterval(game_core, 500);
+    </pre>
+    </div>
+
+    <footer align="center">
+        Copyright (c)2014 Thomas S. Phillips..
+    </footer>
+</body>
+</html>

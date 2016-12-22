@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<!--
+Copyright (c)2014 Thomas S. Phillips..
+For non-commercial use only.
+You may use this file for personal educational use, or as a basis for
+creating your own unique derivatives.
+
+
+ 
+-->
+<html>
+<head>
+	<title>Example 7.1 - Flashy</title>
+	<style type="text/css">
+	    .example {
+	        background:white;
+	        color:black;
+	        border-style:solid;
+	        border-color:black;
+	        border-width:3px;
+	    }
+        h1 {
+            text-align:center;
+        }
+		.example-canvas {
+            padding-left: 0;
+            padding-right: 0;
+            margin-left: auto;
+            margin-right: auto;
+            display: block;
+        }
+	</style>
+	<script src="../scripts/google-code-prettify/run_prettify.js"></script>
+</head>
+<body>
+    <div class="example">
+
+    <h1>Example 7.1 - Flashy</h1>
+    <p align="center">
+        This is a live example.
+        The code is embedded in the web page.
+        View the page source with your browser to see it all.
+    </p>
+
+	<canvas id="canvas" class="example-canvas" width="400" height="300"></canvas>
+
+	<script>
+    //////////////////////////
+    // Lesson 7.1 Example
+    // Comments start with "//"
+    
+    // Flashy visual effect.
+    
+    // Use two variables to track the mouse location.
+    var mouse_x; // where is the mouse on the canvas
+    var mouse_y; // where is the mouse on the canvas
+
+    // We drawn on the HTML5 canvas.
+    var canvas = document.getElementById("canvas");
+
+    // Track mouse movement.
+    canvas.onmousemove = function(event) {
+        mouse_x = event.clientX - canvas.offsetLeft;
+        mouse_y = event.clientY - canvas.offsetTop;
+    }; // onmousemove()
+
+    // The "context" variable has functions for drawing on the screen.
+    var context = canvas.getContext("2d");
+    
+    // game_core() is our main game function.
+    function game_core() {
+       update();  // check the rules
+       draw();    // draw the game on the screen
+       vfx();     // display visual effects
+       sfx();     // play sound effects
+    } // game_core()
+
+    // update() checks the game rules.
+    function update() {
+        // There are no rules.
+    } // update()
+    
+    // draw() draws on the screen.
+    function draw() {
+        // Clear the background.
+        context.fillStyle = "#000";
+        context.fillRect(0, 0, canvas.width, canvas.height);
+    } // draw()
+    
+    // Return a random number from nim to max.
+    function random_number(min, max) {
+        return Math.floor(Math.random() * (max - min + 1) + min);
+    } // randomNumber()
+    
+    function vfx() {
+        // Flashy!
+        var red = random_number(0, 255);
+        var green = random_number(0, 255);
+        var blue = random_number(0, 255);
+        context.fillStyle = "rgb(" + red + "," + green + "," + blue + ")";
+        context.fillRect(mouse_x, mouse_y, 75, 75);
+    } // vfx()
+    
+    function sfx() {
+        // We have no sound effects.
+    } // sfx()
+    
+    // Call the game_core function every 16ms (i.e., every 0.016 seconds).
+    // 16ms per draw is roughly 60 frames per second.
+    setInterval(game_core, 16);
+	</script>
+
+    <pre class="prettyprint lang-javascript linenums:1" style="font-size:10pt;">
+    //////////////////////////
+    // Lesson 7.1 Example
+    // Comments start with "//"
+    
+    // Flashy visual effect.
+    
+    // Use two variables to track the mouse location.
+    var mouse_x; // where is the mouse on the canvas
+    var mouse_y; // where is the mouse on the canvas
+
+    // We drawn on the HTML5 canvas.
+    var canvas = document.getElementById("canvas");
+
+    // Track mouse movement.
+    canvas.onmousemove = function(event) {
+        mouse_x = event.clientX - canvas.offsetLeft;
+        mouse_y = event.clientY - canvas.offsetTop;
+    }; // onmousemove()
+
+    // The "context" variable has functions for drawing on the screen.
+    var context = canvas.getContext("2d");
+    
+    // game_core() is our main game function.
+    function game_core() {
+       update();  // check the rules
+       draw();    // draw the game on the screen
+       vfx();     // display visual effects
+       sfx();     // play sound effects
+    } // game_core()
+
+    // update() checks the game rules.
+    function update() {
+        // There are no rules.
+    } // update()
+    
+    // draw() draws on the screen.
+    function draw() {
+        // Clear the background.
+        context.fillStyle = "#000";
+        context.fillRect(0, 0, canvas.width, canvas.height);
+    } // draw()
+    
+    // Return a random number from nim to max.
+    function random_number(min, max) {
+        return Math.floor(Math.random() * (max - min + 1) + min);
+    } // randomNumber()
+    
+    function vfx() {
+        // Flashy!
+        var red = random_number(0, 255);
+        var green = random_number(0, 255);
+        var blue = random_number(0, 255);
+        context.fillStyle = "rgb(" + red + "," + green + "," + blue + ")";
+        context.fillRect(mouse_x, mouse_y, 75, 75);
+    } // vfx()
+    
+    function sfx() {
+        // We have no sound effects.
+    } // sfx()
+    
+    // Call the game_core function every 16ms (i.e., every 0.016 seconds).
+    // 16ms per draw is roughly 60 frames per second.
+    setInterval(game_core, 16);
+    </pre>
+    </div>
+
+    <footer align="center">
+        Copyright (c)2014 Thomas S. Phillips..
+    </footer>
+</body>
+</html>

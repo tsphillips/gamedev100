@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Lesson 6.6: Game Over</title>
+	<link rel="stylesheet" media="screen" href="../css/style.css">
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="author" content="Thomas S. Phillips">
+	<meta name="robots" content="noindex, nofollow">
+	<script src="../scripts/google-code-prettify/run_prettify.js"></script>
+</head>
+<body><div id="container">
+
+    <header>Learning objective 6.6: End the game when no moves are left.</header>
+    
+    <div id="banner">
+        <div id="support">
+            <b>CONTACT</b><br>The original author can be reached at &#116;&#111;&#109;&#064;&#116;&#115;&#112;&#104;&#105;&#108;&#108;&#105;&#112;&#115;&#046;&#110;&#101;&#116;.<br>
+            <br>
+            <br>
+            <br>
+        </div>
+    </div>
+    
+    <div id="content-container">
+
+    <nav class="ac-container">
+        <div>
+            <input id="ac-0" name="accordion-1" type="radio" />
+            <label for="ac-0" class="examplelabel">Final Game</label>
+            <article class="ac-small">
+                <ul>
+                    <li><a href="../game/game.html" target="_blank">The Final Game</a></li>
+                    <li><a href="../game/game.js" target="_blank">Game Source Code</a></li>
+                </ul>
+            </article>
+        </div>
+
+        <div>
+            <input id="ac-1" name="accordion-1" type="radio" />
+            <label for="ac-1">1: Getting Started</label>
+            <article class="ac-small">
+                <ul>
+                    <li><a href="../module1/index.html">Module 1 Overview</a></li>
+                    <li>1.1 <a href="../module1/lesson11.html">Introduction</a></li>
+                    <li>1.2 <a href="../module1/lesson12.html">Basic Tools</a></li>
+                    <li>1.3 <a href="../module1/lesson13.html">The Core Game</a></li>
+                </ul>
+            </article>
+        </div>
+        <div>
+            <input id="ac-2" name="accordion-1" type="radio" />
+            <label for="ac-2">2: Game Design</label>
+            <article class="ac-small">
+                <ul>
+                    <li><a href="../module2/index.html">Module 2 Overview</a></li>
+                    <li>2.1 <a href="../module2/lesson21.html">Match-3 Games</a></li>
+                    <li>2.2 <a href="../module2/lesson22.html">Adapting the Game</a></li>
+                    <li>2.3 <a href="../module2/lesson23.html">Game Design</a></li>
+                </ul>
+            </article>
+        </div>
+        <div>
+            <input id="ac-3" name="accordion-1" type="radio" />
+            <label for="ac-3">3: Data</label>
+            <article class="ac-small">
+                <ul>
+                    <li><a href="../module3/index.html">Module 3 Overview</a></li>
+                    <li>3.1 <a href="../module3/lesson31.html">Game Variables</a></li>
+                    <li>3.2 <a href="../module3/lesson32.html">Input and Output</a></li>
+                    <li>3.3 <a href="../module3/lesson33.html">Game State</a></li>
+                    <li>3.4 <a href="../module3/lesson34.html">Game Board</a></li>
+                </ul>
+            </article>
+        </div>
+        <div>
+            <input id="ac-4" name="accordion-1" type="radio" />
+            <label for="ac-4">4: Display</label>
+            <article class="ac-small">
+                <ul>
+                    <li><a href="../module4/index.html">Module 4 Overview</a></li>
+                    <li>4.1 <a href="../module4/lesson41.html">Loading Images</a></li>
+                    <li>4.2 <a href="../module4/lesson42.html">Drawing in Layers</a></li>
+                    <li>4.3 <a href="../module4/lesson43.html">Background and Framing</a></li>
+                    <li>4.4 <a href="../module4/lesson44.html">Draw a Grid of Tiles</a></li>
+                </ul>
+            </article>
+        </div>
+        <div>
+            <input id="ac-5" name="accordion-1" type="radio" />
+            <label for="ac-5">5: Input</label>
+            <article class="ac-small">
+                <ul>
+                    <li><a href="../module5/index.html">Module 5 Overview</a></li>
+                    <li>5.1 <a href="../module5/lesson51.html">Tracking Mouse Movement</a></li>
+                    <li>5.2 <a href="../module5/lesson52.html">Clicking Tiles</a></li>
+                </ul>
+            </article>
+        </div>
+        <div>
+            <input id="ac-6" name="accordion-1" type="radio" checked />
+            <label for="ac-6">6: Rules of the Game</label>
+            <article class="ac-medium">
+                <ul>
+                    <li><a href="../module6/index.html">Module 6 Overview</a></li>
+                    <li>6.1 <a href="../module6/lesson61.html">Main Rules</a></li>
+                    <li>6.2 <a href="../module6/lesson62.html">Replacing Tiles</a></li>
+                    <li>6.3 <a href="../module6/lesson63.html">Falling Tiles</a></li>
+                    <li>6.4 <a href="../module6/lesson64.html">Clear 3-in-a-Row</a></li>
+                    <li>6.5 <a href="../module6/lesson65.html">Swapping Tiles</a></li>
+                    <li><b>6.6 <a href="../module6/lesson66.html">Game Over?</a></b></li>
+                </ul>
+            </article>
+        </div>
+        <div>
+            <input id="ac-7" name="accordion-1" type="radio" />
+            <label for="ac-7">7: Visual Effects</label>
+            <article class="ac-medium">
+                <ul>
+                    <li><a href="../module7/index.html">Module 7 Overview</a></li>
+                    <li>7.1 <a href="../module7/lesson71.html">Loading Visual Effects</a></li>
+                    <li>7.2 <a href="../module7/lesson72.html">Selection Effect</a></li>
+                    <li>7.3 <a href="../module7/lesson73.html">Smooth Dropping Tiles</a></li>
+                    <li>7.4 <a href="../module7/lesson74.html">What's the score?</a></li>
+                    <li>7.5 <a href="../module7/lesson75.html">Just the Facts</a></li>
+                </ul>
+            </article>
+        </div>
+        <div>
+            <input id="ac-8" name="accordion-1" type="radio" />
+            <label for="ac-8">8: Sound Effects</label>
+            <article class="ac-small">
+                <ul>
+                    <li><a href="../module8/index.html">Module 8 Overview</a></li>
+                    <li>8.1 <a href="../module8/lesson81.html">Detect Supported Audio</a></li>
+                    <li>8.2 <a href="../module8/lesson82.html">Load Audio</a></li>
+                    <li>8.3 <a href="../module8/lesson83.html">Play Triggered Audio</a></li>
+                </ul>
+            </article>
+        </div>
+        <div>
+            <input id="ac-9" name="accordion-1" type="radio" />
+            <label for="ac-9">9: Going Forward</label>
+            <article class="ac-small">
+                <ul>
+                    <li><a href="../module9/index.html">Module 9 Overview</a></li>
+                    <li>9.1 <a href="../module9/lesson91.html">Customization</a></li>
+                    <li>9.2 <a href="../module9/lesson92.html">Extending the Game</a></li>
+                    <li>9.3 <a href="../module9/lesson93.html">Conclusion</a></li>
+                </ul>
+            </article>
+        </div>
+        <div>
+            <input id="ac-10" name="accordion-1" type="radio" />
+            <label for="ac-10" class="examplelabel">Examples</label>
+            <article class="ac-large">
+                <ul>
+                    <li>(all open in new window)</li>
+                    <li><a href="../examples/example13.html" target="_blank">1.3 Blink</a></li>
+                                
+                    <li><a href="../examples/example31.html" target="_blank">3.1 Drawing Offsets</a></li>
+                    <li><a href="../examples/example32.html" target="_blank">3.2 Canvas and Context</a></li>
+                    <li><a href="../examples/example33.html" target="_blank">3.3 Game States</a></li>
+                    <li><a href="../examples/example34.html" target="_blank">3.4 Arrays</a></li>
+            
+                    <li><a href="../examples/example41.html" target="_blank">4.1 Loading Images</a></li>
+                    <li><a href="../examples/example42.html" target="_blank">4.2 Drawing Layers</a></li>
+                    <li><a href="../examples/example43.html" target="_blank">4.3 Image Position</a></li>
+                    <li><a href="../examples/example44.html" target="_blank">4.4 Drawing Grids</a></li>
+            
+                    <li><a href="../examples/example51.html" target="_blank">5.1 The Mouse</a></li>
+                    <li><a href="../examples/example52.html" target="_blank">5.2 Mouse Click</a></li>
+            
+                    <li><a href="../examples/example61.html" target="_blank">6.1 Toggle Tiles</a></li>
+                    <li><a href="../examples/example62.html" target="_blank">6.2 Simple Game</a></li>
+                    <li><a href="../examples/example63.html" target="_blank">6.3 Falling Tiles</a></li>
+                    <li><a href="../examples/example64.html" target="_blank">6.4 Bonus Match</a></li>
+                    <li><a href="../examples/example65.html" target="_blank">6.5 Moving Earth</a></li>
+                    <li><a href="../examples/example66.html" target="_blank">6.6 Martian Orbit</a></li>
+                    
+                    <li><a href="../examples/example71.html" target="_blank">7.1 Flashy</a></li>
+                    <li><a href="../examples/example72.html" target="_blank">7.2 Pulse</a></li>
+                    <li><a href="../examples/example73.html" target="_blank">7.3 Pulsing Earth</a></li>
+                    <li><a href="../examples/example74.html" target="_blank">7.4 Clickity-Clack</a></li>
+                    <li><a href="../examples/example75.html" target="_blank">7.5 Rainbow Text</a></li>
+                    
+                    <li><a href="../examples/example81.html" target="_blank">8.1 Environment</a></li>
+                    <li><a href="../examples/example82.html" target="_blank">8.2 Sounds</a></li>
+                    <li><a href="../examples/example83.html" target="_blank">8.3 Volume</a></li>
+                </ul>
+            </article>
+        </div>
+
+    </nav>
+    
+    <section id="content">
+        &nbsp;
+        <h2>Lesson 6.6: Game Over</h2>
+        
+        <div class="video">
+            <video controls>
+                <source src="video66.mp4" type="video/mp4">
+                <source src="video66.ogg" type="video/ogg">
+                Your browser does not support the video tag.
+            </video>
+        </div>
+
+<p>Oh, no!  It's the end! Well, then end of module six, at least.</p>
+
+<p>The last thing we need to do is end the game if there are no legal swaps left to make. It turns out that checking this is a lot of work. The <code>count_possible_swaps()</code> function contains lots and lots of code. We basically are checking many patterns. We walk across the game board, checking each position to see if there are any patterns that look like a swap could be made. Here is a sample pattern:</p>
+
+<img class="center" src="illustration6_6a.png">
+
+<p>Ignore the dots -- they could be any tile. Do you see how the middle X tile could be swapped down to make 3-in-a-row? If we see this pattern then we know the game is not yet over. Another possible pattern is:</p>
+
+<img class="center" src="illustration6_6b.png">
+
+<p>Get the idea?</p>
+
+<aside><b>Use the Console</b><br>If you haven't already, search the Internet and find out how to open the Javascript console in your browser. While the final game is running you can open the console and type in "possible_swaps_h" -- the value of the variable will be displayed in the console.</aside>
+<p>We use two variables, <code>possible_swaps_h</code> and <code>possible_swaps_v</code>, to count up how many possible swaps the player could make. If they all add up to 0 -- no possible swaps found -- then it's time to end the game.</p>
+
+<p>We won’t go into describing every possible pattern here in the lesson.  There are sixteen potential patterns and describing them all would make it’s own lesson.  Below is the possible swap counting code, in all it's glory. It's long and it's tedious. If there are no possibles swaps found, then the game state is set to GAME_OVER.  You should go through the code slowly, maybe even drawing patterns on a piece of paper as you work through it. Skip it if you must, but reading through code like this helps you learn.</p>
+
+<pre class="prettyprint lang-javascript" style="font-size:10pt;">
+////////////////////////
+// Lesson 6.6 Game Over?
+
+// Count the number of swaps that could be made
+function count_possible_swaps() {
+    possible_swaps_h = 0;
+    possible_swaps_v = 0;
+    
+    // Hold a scantron score card over the grid, one tile at a time.
+    
+    // count possible horizontal swaps
+    // Inline swaps
+    for (y = 0; y < grid_height; y++) {
+        for (x = 3; x < grid_width; x++) {
+            if (tiles[x][y] == tiles[x-1][y] &&
+                tiles[x][y] == tiles[x-3][y]) {
+                    possible_swaps_h++;
+                } // if X-XX
+            if (tiles[x][y] == tiles[x-2][y] &&
+                tiles[x][y] == tiles[x-3][y]) {
+                    possible_swaps_h++;
+                } // if XX-X
+        } // for x
+    } // for y
+    // Out-of-line swaps
+    for (y = 2; y < grid_height; y++) {
+        for (x = 1; x < grid_width; x++) {
+            // case 1
+            if (tiles[x][y] == tiles[x][y-1] &&
+                 tiles[x][y] == tiles[x-1][y-2]) {
+                possible_swaps_h++;
+            } // if
+            // case 2
+            if (tiles[x][y] == tiles[x-1][y-1] &&
+                 tiles[x][y] == tiles[x][y-2]) {
+                possible_swaps_h++;
+            } // if
+            // case 3
+            if (tiles[x][y] == tiles[x-1][y-1] &&
+                 tiles[x][y] == tiles[x-1][y-2]) {
+                possible_swaps_h++;
+            } // if
+            // case 4
+            if (tiles[x-1][y] == tiles[x][y-1] &&
+                 tiles[x-1][y] == tiles[x-1][y-2]) {
+                possible_swaps_h++;
+            } // if
+            // case 5
+            if (tiles[x-1][y] == tiles[x-1][y-1] &&
+                 tiles[x-1][y] == tiles[x][y-2]) {
+                possible_swaps_h++;
+            } // if
+            // case 6
+            if (tiles[x-1][y] == tiles[x][y-1] &&
+                 tiles[x-1][y] == tiles[x][y-2]) {
+                possible_swaps_h++;
+            } // if
+        } // for x
+    } // for y
+
+    // count possible vertical swaps
+    // Inline swaps
+    for (x = 0; x < grid_width; x++) {
+        for (y = 3; y < grid_height; y++) {
+            if (tiles[x][y] == tiles[x][y-1] &&
+                tiles[x][y] == tiles[x][y-3]) {
+                    possible_swaps_v++;
+                } // if
+            if (tiles[x][y] == tiles[x][y-2] &&
+                tiles[x][y] == tiles[x][y-3]) {
+                    possible_swaps_v++;
+                } // if
+        } // for y
+    } // for x
+    // Out-of-line swaps
+    for (x = 2; x < grid_width; x++) {
+        for (y = 1; y < grid_height; y++) {
+            // case 1
+            if (tiles[x][y] == tiles[x-1][y] &&
+                 tiles[x][y] == tiles[x-2][y-1]) {
+                possible_swaps_v++;
+            } // if
+            // case 2
+            if (tiles[x][y] == tiles[x-1][y-1] &&
+                 tiles[x][y] == tiles[x-2][y]) {
+                possible_swaps_v++;
+            } // if
+            // case 3
+            if (tiles[x][y] == tiles[x-1][y-1] &&
+                 tiles[x][y] == tiles[x-2][y-1]) {
+                possible_swaps_v++;
+            } // if
+            // case 4
+            if (tiles[x][y-1] == tiles[x-1][y] &&
+                 tiles[x][y-1] == tiles[x-2][y-1]) {
+                possible_swaps_v++;
+            } // if
+            // case 5
+            if (tiles[x][y-1] == tiles[x-1][y-1] &&
+                 tiles[x][y-1] == tiles[x-2][y]) {
+                possible_swaps_v++;
+            } // if
+            // case 6
+            if (tiles[x][y-1] == tiles[x-1][y] &&
+                 tiles[x][y-1] == tiles[x-2][y]) {
+                possible_swaps_v++;
+            } // if
+        } // for x
+    } // for y
+
+    if (possible_swaps_h == 0 && possible_swaps_v == 0) {
+        game_state = mode.GAME_OVER;
+    } // if
+} // count_possible_swaps()
+</pre>
+
+        <a href="lesson65.html"><img src="../media/previous_button.png" width="210" height="62" alt="Previous Lesson" style="float:left;margin:5px;" /></a>
+        <a href="../module7/index.html"><img src="../media/next_button.png" width="210" height="62" alt="Next Lesson" style="float:right;margin:5px;" /></a>
+        
+        <div style="height:62px;"></div>
+        <p />
+        
+        <hr width="80%">
+        <a href="../examples/example66.html" target="_blank"><img class="center" src="example6_6.png" /></a>
+
+    </section>
+
+    &nbsp;
+
+    </div>
+
+    <footer>
+        <div class="trademark">Game Blueprint is a trademark of Thomas S. Phillips.</div>
+        <div class="copyright">Copyright &copy; 2014 Thomas S. Phillips.</div>
+    </footer>
+</div></body>
+</html>

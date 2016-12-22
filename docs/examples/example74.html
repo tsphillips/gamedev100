@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<!--
+Copyright (c)2014 Thomas S. Phillips..
+For non-commercial use only.
+You may use this file for personal educational use, or as a basis for
+creating your own unique derivatives.
+
+
+ 
+-->
+<html>
+<head>
+	<title>Example 7.4 - Clickity-Clack</title>
+	<style type="text/css">
+	    .example {
+	        background:white;
+	        color:black;
+	        border-style:solid;
+	        border-color:black;
+	        border-width:3px;
+	    }
+        h1 {
+            text-align:center;
+        }
+		.example-canvas {
+            padding-left: 0;
+            padding-right: 0;
+            margin-left: auto;
+            margin-right: auto;
+            display: block;
+        }
+	</style>
+	<script src="../scripts/google-code-prettify/run_prettify.js"></script>
+</head>
+<body>
+    <div class="example">
+
+    <h1>Example 7.4 - Clickity-Clack</h1>
+    <p align="center">
+        This is a live example.
+        The code is embedded in the web page.
+        View the page source with your browser to see it all.
+    </p>
+
+	<canvas id="canvas" class="example-canvas" width="400" height="300"></canvas>
+
+	<script>
+    //////////////////////////
+    // Lesson 7.4 Example
+    // Comments start with "//"
+    
+    // Display text one letter at a time, like a typewriter.
+
+    // How fast to type the message.
+    var type_speed = 10;
+    
+    // A timer used in the typing effect.
+    var type_counter = 0;
+
+    // The message to type.
+    var message = "You can make games!";
+
+    // The last letter number typed.
+    var message_index = 0;
+
+    // We drawn on the HTML5 canvas.
+    var canvas = document.getElementById("canvas");
+    
+    // The "context" variable has functions for drawing on the screen.
+    var context = canvas.getContext("2d");
+    
+    // game_core() is our main game function.
+    // The game_core() function is called by the setInterval() command.
+    function game_core() {
+       update();  // check the rules
+       draw();    // draw the game on the screen
+       vfx();     // display visual effects
+       sfx();     // play sound effects
+    } // game_core()
+
+    // update() checks the game rules.
+    // The update() function is called by the game_core() function.
+    function update() {
+        // no rules
+    } // update()
+    
+    // draw() draws on the screen.
+    // The draw() function is called by the game_core() function.
+    function draw() {
+        // Clear the background.
+        context.fillStyle = "#000";
+        context.fillRect(0, 0, canvas.width, canvas.height);
+    } // draw()
+    
+    // The vfx() function is called by the game_core() function.
+    function vfx() {
+        // Effect: Typed text.
+        
+        // We set the text attributes right here in the function because
+        // we may want to use different text attributes in different places.
+        context.font="28px monospace";
+        context.textAlign = "center";
+
+        // The text will be white.
+        context.fillStyle = "#fff";
+        
+        type_counter = type_counter + type_speed;
+        if (type_counter > 100) {
+            type_counter = 0;
+            message_index = message_index + 1;
+        } // if
+
+        if (message_index > message.length) {
+            message_index = 0;
+        } // if
+        
+        // Put the message in the middle of the canvas.
+        context.fillText(message.substring(0, message_index),
+                         canvas.width / 2,
+                         canvas.height / 2);
+    } // vfx()
+
+    // The sfx() function is called by the game_core() function.
+    function sfx() {
+        // We have no sound effects.
+    } // sfx()
+    
+    // Call the game_core() function every 16ms (i.e., every 0.016 seconds).
+    setInterval(game_core, 16);
+	</script>
+
+    <pre class="prettyprint lang-javascript linenums:1" style="font-size:10pt;">
+    //////////////////////////
+    // Lesson 7.4 Example
+    // Comments start with "//"
+    
+    // Display text one letter at a time, like a typewriter.
+
+    // How fast to type the message.
+    var type_speed = 10;
+    
+    // A timer used in the typing effect.
+    var type_counter = 0;
+
+    // The message to type.
+    var message = "You can make games!";
+
+    // The last letter number typed.
+    var message_index = 0;
+
+    // We drawn on the HTML5 canvas.
+    var canvas = document.getElementById("canvas");
+    
+    // The "context" variable has functions for drawing on the screen.
+    var context = canvas.getContext("2d");
+    
+    // game_core() is our main game function.
+    // The game_core() function is called by the setInterval() command.
+    function game_core() {
+       update();  // check the rules
+       draw();    // draw the game on the screen
+       vfx();     // display visual effects
+       sfx();     // play sound effects
+    } // game_core()
+
+    // update() checks the game rules.
+    // The update() function is called by the game_core() function.
+    function update() {
+        // no rules
+    } // update()
+    
+    // draw() draws on the screen.
+    // The draw() function is called by the game_core() function.
+    function draw() {
+        // Clear the background.
+        context.fillStyle = "#000";
+        context.fillRect(0, 0, canvas.width, canvas.height);
+    } // draw()
+    
+    // The vfx() function is called by the game_core() function.
+    function vfx() {
+        // Effect: Typed text.
+        
+        // We set the text attributes right here in the function because
+        // we may want to use different text attributes in different places.
+        context.font="28px monospace";
+        context.textAlign = "center";
+
+        // The text will be white.
+        context.fillStyle = "#fff";
+        
+        type_counter = type_counter + type_speed;
+        if (type_counter > 100) {
+            type_counter = 0;
+            message_index = message_index + 1;
+        } // if
+
+        if (message_index > message.length) {
+            message_index = 0;
+        } // if
+        
+        // Put the message in the middle of the canvas.
+        context.fillText(message.substring(0, message_index),
+                         canvas.width / 2,
+                         canvas.height / 2);
+    } // vfx()
+
+    // The sfx() function is called by the game_core() function.
+    function sfx() {
+        // We have no sound effects.
+    } // sfx()
+    
+    // Call the game_core() function every 16ms (i.e., every 0.016 seconds).
+    setInterval(game_core, 16);
+    </pre>
+    </div>
+        
+    <footer align="center">
+        Copyright (c)2014 Thomas S. Phillips..
+    </footer>
+</body>
+</html>

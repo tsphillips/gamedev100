@@ -1,0 +1,21 @@
+= README
+Thomas S. Phillips <tom@tsphillips.net>
+
+This is a course on game development created in 2014.
+
+== Background
+
+I ran a game company for a number of years.
+Fun and exciting stuff, but a hard business to be in.
+One of the products we developed was this course on web game development.
+There were supposed to be a number of videos to go with the course modules.
+We had a script, did some shooting, but ended up canceling the project.
+(The ROI did not justify all the expenses.)
+
+== The Course
+
+The course walks through how to make a match-3 game that runs in a web browser.
+View the docs/index.html page in a web browser to start the course.
+
+This course is not completely polished.
+I hope that what is here can help people learn about game development.

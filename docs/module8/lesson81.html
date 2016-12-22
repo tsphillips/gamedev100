@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Lesson 8.1: Detect Supported Audio</title>
+	<link rel="stylesheet" media="screen" href="../css/style.css">
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="author" content="Thomas S. Phillips">
+	<meta name="robots" content="noindex, nofollow">
+	<script src="../scripts/google-code-prettify/run_prettify.js"></script>
+</head>
+<body><div id="container">
+
+    <header>Learning objective 8.1: Detect which audio formats the browser supports.</header>
+    
+    <div id="banner">
+        <div id="support">
+            <b>CONTACT</b><br>The original author can be reached at &#116;&#111;&#109;&#064;&#116;&#115;&#112;&#104;&#105;&#108;&#108;&#105;&#112;&#115;&#046;&#110;&#101;&#116;.<br>
+            <br>
+            <br>
+            <br>
+        </div>
+    </div>
+    
+    <div id="content-container">
+
+    <nav class="ac-container">
+        <div>
+            <input id="ac-0" name="accordion-1" type="radio" />
+            <label for="ac-0" class="examplelabel">Final Game</label>
+            <article class="ac-small">
+                <ul>
+                    <li><a href="../game/game.html" target="_blank">The Final Game</a></li>
+                    <li><a href="../game/game.js" target="_blank">Game Source Code</a></li>
+                </ul>
+            </article>
+        </div>
+
+        <div>
+            <input id="ac-1" name="accordion-1" type="radio" />
+            <label for="ac-1">1: Getting Started</label>
+            <article class="ac-small">
+                <ul>
+                    <li><a href="../module1/index.html">Module 1 Overview</a></li>
+                    <li>1.1 <a href="../module1/lesson11.html">Introduction</a></li>
+                    <li>1.2 <a href="../module1/lesson12.html">Basic Tools</a></li>
+                    <li>1.3 <a href="../module1/lesson13.html">The Core Game</a></li>
+                </ul>
+            </article>
+        </div>
+        <div>
+            <input id="ac-2" name="accordion-1" type="radio" />
+            <label for="ac-2">2: Game Design</label>
+            <article class="ac-small">
+                <ul>
+                    <li><a href="../module2/index.html">Module 2 Overview</a></li>
+                    <li>2.1 <a href="../module2/lesson21.html">Match-3 Games</a></li>
+                    <li>2.2 <a href="../module2/lesson22.html">Adapting the Game</a></li>
+                    <li>2.3 <a href="../module2/lesson23.html">Game Design</a></li>
+                </ul>
+            </article>
+        </div>
+        <div>
+            <input id="ac-3" name="accordion-1" type="radio" />
+            <label for="ac-3">3: Data</label>
+            <article class="ac-small">
+                <ul>
+                    <li><a href="../module3/index.html">Module 3 Overview</a></li>
+                    <li>3.1 <a href="../module3/lesson31.html">Game Variables</a></li>
+                    <li>3.2 <a href="../module3/lesson32.html">Input and Output</a></li>
+                    <li>3.3 <a href="../module3/lesson33.html">Game State</a></li>
+                    <li>3.4 <a href="../module3/lesson34.html">Game Board</a></li>
+                </ul>
+            </article>
+        </div>
+        <div>
+            <input id="ac-4" name="accordion-1" type="radio" />
+            <label for="ac-4">4: Display</label>
+            <article class="ac-small">
+                <ul>
+                    <li><a href="../module4/index.html">Module 4 Overview</a></li>
+                    <li>4.1 <a href="../module4/lesson41.html">Loading Images</a></li>
+                    <li>4.2 <a href="../module4/lesson42.html">Drawing in Layers</a></li>
+                    <li>4.3 <a href="../module4/lesson43.html">Background and Framing</a></li>
+                    <li>4.4 <a href="../module4/lesson44.html">Draw a Grid of Tiles</a></li>
+                </ul>
+            </article>
+        </div>
+        <div>
+            <input id="ac-5" name="accordion-1" type="radio" />
+            <label for="ac-5">5: Input</label>
+            <article class="ac-small">
+                <ul>
+                    <li><a href="../module5/index.html">Module 5 Overview</a></li>
+                    <li>5.1 <a href="../module5/lesson51.html">Tracking Mouse Movement</a></li>
+                    <li>5.2 <a href="../module5/lesson52.html">Clicking Tiles</a></li>
+                </ul>
+            </article>
+        </div>
+        <div>
+            <input id="ac-6" name="accordion-1" type="radio" />
+            <label for="ac-6">6: Rules of the Game</label>
+            <article class="ac-medium">
+                <ul>
+                    <li><a href="../module6/index.html">Module 6 Overview</a></li>
+                    <li>6.1 <a href="../module6/lesson61.html">Main Rules</a></li>
+                    <li>6.2 <a href="../module6/lesson62.html">Replacing Tiles</a></li>
+                    <li>6.3 <a href="../module6/lesson63.html">Falling Tiles</a></li>
+                    <li>6.4 <a href="../module6/lesson64.html">Clear 3-in-a-Row</a></li>
+                    <li>6.5 <a href="../module6/lesson65.html">Swapping Tiles</a></li>
+                    <li>6.6 <a href="../module6/lesson66.html">Game Over?</a></li>
+                </ul>
+            </article>
+        </div>
+        <div>
+            <input id="ac-7" name="accordion-1" type="radio" />
+            <label for="ac-7">7: Visual Effects</label>
+            <article class="ac-medium">
+                <ul>
+                    <li><a href="../module7/index.html">Module 7 Overview</a></li>
+                    <li>7.1 <a href="../module7/lesson71.html">Loading Visual Effects</a></li>
+                    <li>7.2 <a href="../module7/lesson72.html">Selection Effect</a></li>
+                    <li>7.3 <a href="../module7/lesson73.html">Smooth Dropping Tiles</a></li>
+                    <li>7.4 <a href="../module7/lesson74.html">What's the score?</a></li>
+                    <li>7.5 <a href="../module7/lesson75.html">Just the Facts</a></li>
+                </ul>
+            </article>
+        </div>
+        <div>
+            <input id="ac-8" name="accordion-1" type="radio" checked />
+            <label for="ac-8">8: Sound Effects</label>
+            <article class="ac-small">
+                <ul>
+                    <li><a href="../module8/index.html">Module 8 Overview</a></li>
+                    <li><b>8.1 <a href="../module8/lesson81.html">Detect Supported Audio</a></b></li>
+                    <li>8.2 <a href="../module8/lesson82.html">Load Audio</a></li>
+                    <li>8.3 <a href="../module8/lesson83.html">Play Triggered Audio</a></li>
+                </ul>
+            </article>
+        </div>
+        <div>
+            <input id="ac-9" name="accordion-1" type="radio" />
+            <label for="ac-9">9: Going Forward</label>
+            <article class="ac-small">
+                <ul>
+                    <li><a href="../module9/index.html">Module 9 Overview</a></li>
+                    <li>9.1 <a href="../module9/lesson91.html">Customization</a></li>
+                    <li>9.2 <a href="../module9/lesson92.html">Extending the Game</a></li>
+                    <li>9.3 <a href="../module9/lesson93.html">Conclusion</a></li>
+                </ul>
+            </article>
+        </div>
+        <div>
+            <input id="ac-10" name="accordion-1" type="radio" />
+            <label for="ac-10" class="examplelabel">Examples</label>
+            <article class="ac-large">
+                <ul>
+                    <li>(all open in new window)</li>
+                    <li><a href="../examples/example13.html" target="_blank">1.3 Blink</a></li>
+                                
+                    <li><a href="../examples/example31.html" target="_blank">3.1 Drawing Offsets</a></li>
+                    <li><a href="../examples/example32.html" target="_blank">3.2 Canvas and Context</a></li>
+                    <li><a href="../examples/example33.html" target="_blank">3.3 Game States</a></li>
+                    <li><a href="../examples/example34.html" target="_blank">3.4 Arrays</a></li>
+            
+                    <li><a href="../examples/example41.html" target="_blank">4.1 Loading Images</a></li>
+                    <li><a href="../examples/example42.html" target="_blank">4.2 Drawing Layers</a></li>
+                    <li><a href="../examples/example43.html" target="_blank">4.3 Image Position</a></li>
+                    <li><a href="../examples/example44.html" target="_blank">4.4 Drawing Grids</a></li>
+            
+                    <li><a href="../examples/example51.html" target="_blank">5.1 The Mouse</a></li>
+                    <li><a href="../examples/example52.html" target="_blank">5.2 Mouse Click</a></li>
+            
+                    <li><a href="../examples/example61.html" target="_blank">6.1 Toggle Tiles</a></li>
+                    <li><a href="../examples/example62.html" target="_blank">6.2 Simple Game</a></li>
+                    <li><a href="../examples/example63.html" target="_blank">6.3 Falling Tiles</a></li>
+                    <li><a href="../examples/example64.html" target="_blank">6.4 Bonus Match</a></li>
+                    <li><a href="../examples/example65.html" target="_blank">6.5 Moving Earth</a></li>
+                    <li><a href="../examples/example66.html" target="_blank">6.6 Martian Orbit</a></li>
+                    
+                    <li><a href="../examples/example71.html" target="_blank">7.1 Flashy</a></li>
+                    <li><a href="../examples/example72.html" target="_blank">7.2 Pulse</a></li>
+                    <li><a href="../examples/example73.html" target="_blank">7.3 Pulsing Earth</a></li>
+                    <li><a href="../examples/example74.html" target="_blank">7.4 Clickity-Clack</a></li>
+                    <li><a href="../examples/example75.html" target="_blank">7.5 Rainbow Text</a></li>
+                    
+                    <li><a href="../examples/example81.html" target="_blank">8.1 Environment</a></li>
+                    <li><a href="../examples/example82.html" target="_blank">8.2 Sounds</a></li>
+                    <li><a href="../examples/example83.html" target="_blank">8.3 Volume</a></li>
+                </ul>
+            </article>
+        </div>
+
+    </nav>
+    
+    <section id="content">
+        &nbsp;
+        <h2>Lesson 8.1: Detect Supported Audio</h2>
+        
+        <div class="video">
+            <video controls>
+                <source src="video81.mp4" type="video/mp4">
+                <source src="video81.ogg" type="video/ogg">
+                Your browser does not support the video tag.
+            </video>
+        </div>
+
+<aside><b>Audio Wars</b><br>Unfortunately, not all browsers support the same audio formats. In your games you should include both MP3 and Ogg Vorbis audio files.</aside>
+<p>Modern browsers do not all support the same audio formats. However, most web browsers will support either Ogg or MP3 format, but not necessarily both. So, we will support both Ogg and MP3 formats and decide which one to play depending on what the browser will support.</p>
+
+<p>To play sound we need to create an <code>Audio</code> object. The <code>Audio</code> object will tell us what audio formats it can play. Here's the code to create a new <code>Audio</code> object:</p>
+
+<pre class="prettyprint lang-javascript" style="font-size:10pt;">
+var test_sfx = new Audio();
+</pre>
+
+<p>Below is an example of how to ask whether Ogg format is supported. The code will return either <code>true</code> or <code>false</code>.</p>
+
+<pre class="prettyprint lang-javascript" style="font-size:10pt;">
+test_sfx.canPlayType("audio/ogg")
+</pre>
+
+<p>Finally, we will be using the <code>sfx_extension</code> variable to note the appropriate file extension for the audio files we will be loading. Here is the final code to detect what audio format the browser supports:</p>
+
+<pre class="prettyprint lang-javascript" style="font-size:10pt;">
+////////////////////////////////////
+// Lesson 8.1 Detect Supported Audio
+
+var sfx_extension = "";
+var test_sfx = new Audio();
+if (test_sfx.canPlayType("audio/ogg")) {
+   sfx_extension = "ogg";
+} else if (test_sfx.canPlayType("audio/mpeg")) {
+   sfx_extension = "mp3";
+} // if-else
+</pre>
+
+        <a href="index.html"><img src="../media/previous_button.png" width="210" height="62" alt="Previous Lesson" style="float:left;margin:5px;" /></a>
+        <a href="lesson82.html"><img src="../media/next_button.png" width="210" height="62" alt="Next Lesson" style="float:right;margin:5px;" /></a>
+        
+        <div style="height:62px;"></div>
+        <p />
+        
+        <hr width="80%">
+        <a href="../examples/example81.html" target="_blank"><img class="center" src="example8_1.png" /></a>
+
+    </section>
+
+    &nbsp;
+
+    </div>
+
+    <footer>
+        <div class="trademark">Game Blueprint is a trademark of Thomas S. Phillips.</div>
+        <div class="copyright">Copyright &copy; 2014 Thomas S. Phillips.</div>
+    </footer>
+</div></body>
+</html>

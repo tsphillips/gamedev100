@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<!--
+Copyright (c)2014 Thomas S. Phillips..
+For non-commercial use only.
+You may use this file for personal educational use, or as a basis for
+creating your own unique derivatives.
+
+
+
+-->
+<html>
+<head>
+	<title>Example 1.1</title>
+	<style type="text/css">
+	    .example {
+	        background:white;
+	        color:black;
+	        border-style:solid;
+	        border-color:black;
+	        border-width:1em;
+	    }
+        h1 {
+            text-align:center;
+        }
+		.example-canvas {
+            padding-left: 0;
+            padding-right: 0;
+            margin-left: auto;
+            margin-right: auto;
+            display: block;
+        }
+	</style>
+	<script src="../scripts/google-code-prettify/run_prettify.js"></script>
+</head>
+<body>
+    <div class="example">
+
+    <h1>Example 1.1 - Example</h1>
+
+	<canvas id="canvas" class="example-canvas" width="200" height="150"></canvas>
+
+	<script>
+    //////////////////////////
+    // Lesson 1.3 Example
+    // Comments start with "//"
+
+    // We will call this game "Blink."
+    // "Blink" is a real simple game.
+    // The game is simple and boring.
+    // They player doesn't get to do anything.
+
+    // Is the box on? On is "true" and off is "false."
+    var onoff = true;
+
+    // We drawn on the HTML5 canvas.
+    var canvas = document.getElementById("canvas");
+
+    // The "context" variable has functions for drawing on the screen.
+    var context = canvas.getContext("2d");
+
+    // We will draw some text later.
+    context.font="14px monospace";
+    context.textAlign = "center";
+
+    // game_core() is our main game function.
+    // A function is a list of commands that we will execute later.
+    function game_core() {
+       update();  // check the rules
+       draw();    // draw the game on the screen
+       vfx();     // display visual effects
+       sfx();     // play sound effects
+    } // game_core()
+
+    // update() checks the game rules.
+    function update() {
+        if (onoff == true) {
+            onoff = false;
+        } else {
+            onoff = true;
+        } // if-else
+        // A more advanced way to toggle the onoff variable is:
+        // onoff = ! onoff;
+        // We set onoff to "not" on off. ! means "not."
+        // If onoff was true, we set it to false.
+        // If onoff was false, we set it to true.
+    } // update()
+
+    // draw() draws on the screen.
+    function draw() {
+        if (onoff == true) { // Is the box on?
+            context.fillStyle = "#000";        // #000 is black.
+            context.fillRect(0, 0, 200, 150);  // Draw a rectangle.
+            context.fillStyle = "#fff";        // #fff is white.
+            // Draw some text.
+            context.fillText("You can make games!", 100, 75);
+        } else {
+            context.fillStyle = "#aaa";        // #aaa is gray.
+            context.fillRect(0, 0, 200, 150);  // Draw a rectangle.
+            context.fillStyle = "#000";        // #000 is black.
+            // Draw some text.
+            context.fillText("You can make games!", 100, 75);
+        } // if-else
+    } // draw()
+
+    function vfx() {
+        // We have no visual special effects.
+    } // vfx()
+
+    function sfx() {
+        // We have no sound effects.
+    } // sfx()
+
+    // Call the game_core function every 500ms (i.e., every 0.500 seconds).
+    // This basically starts the game.
+    setInterval(game_core, 500);
+	</script>
+
+    <pre class="prettyprint lang-html linenums:1" style="font-size:10pt;">
+    //////////////////////////
+    // Lesson 1.3 Example
+    // Comments start with "//"
+
+    // We will call this game "Blink."
+    // "Blink" is a real simple game.
+    // The game is simple and boring.
+    // They player doesn't get to do anything.
+
+    // Is the box on? On is "true" and off is "false."
+    var onoff = true;
+
+    // We drawn on the HTML5 canvas.
+    var canvas = document.getElementById("canvas");
+
+    // The "context" variable has functions for drawing on the screen.
+    var context = canvas.getContext("2d");
+
+    // We will draw some text later.
+    context.font="14px monospace";
+    context.textAlign = "center";
+
+    // game_core() is our main game function.
+    // A function is a list of commands that we will execute later.
+    function game_core() {
+       update();  // check the rules
+       draw();    // draw the game on the screen
+       vfx();     // display visual effects
+       sfx();     // play sound effects
+    } // game_core()
+
+    // update() checks the game rules.
+    function update() {
+        if (onoff == true) {
+            onoff = false;
+        } else {
+            onoff = true;
+        } // if-else
+        // A more advanced way to toggle the onoff variable is:
+        // onoff = ! onoff;
+        // We set onoff to "not" on off. ! means "not."
+        // If onoff was true, we set it to false.
+        // If onoff was false, we set it to true.
+    } // update()
+
+    // draw() draws on the screen.
+    function draw() {
+        if (onoff == true) { // Is the box on?
+            context.fillStyle = "#000";        // #000 is black.
+            context.fillRect(0, 0, 200, 150);  // Draw a rectangle.
+            context.fillStyle = "#fff";        // #fff is white.
+            // Draw some text.
+            context.fillText("You can make games!", 100, 75);
+        } else {
+            context.fillStyle = "#aaa";        // #aaa is gray.
+            context.fillRect(0, 0, 200, 150);  // Draw a rectangle.
+            context.fillStyle = "#000";        // #000 is black.
+            // Draw some text.
+            context.fillText("You can make games!", 100, 75);
+        } // if-else
+    } // draw()
+
+    function vfx() {
+        // We have no visual special effects.
+    } // vfx()
+
+    function sfx() {
+        // We have no sound effects.
+    } // sfx()
+
+    // Call the game_core function every 500ms (i.e., every 0.500 seconds).
+    // This basically starts the game.
+    setInterval(game_core, 500);
+    </pre>
+    </div>
+</body>
+</html>
